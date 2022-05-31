@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Monumental Habits</string>
+    <string name="welcome">Welcome To\n Monumental Habits</string>
+    <string name="intro">We can help you to be a better\n version of yourself.</string>
+    <string name="intro2_title">Create New\n Habit Easily</string>
+    <string name="intro3_title">Keep Track Of Your\n Progress</string>
+    <string name="intro4_title">Join A Supportive\n Community</string>
+    <string name="next">Next</string>
+    <string name="start">Start</string>
+</resources>
