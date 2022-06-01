@@ -3,6 +3,9 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
 android {
     compileSdk 32
 
@@ -53,4 +56,11 @@ dependencies {
     // Dots Indicator
     implementation("com.tbuonomo:dotsindicator:4.3")
 
+    // Dagger Hilt
+    implementation 'com.google.dagger:hilt-android:2.42'
+    kapt 'com.google.dagger:hilt-compiler:2.42'
+}
+
+kapt {
+    correctErrorTypes true
 }

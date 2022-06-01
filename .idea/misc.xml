@@ -6,12 +6,14 @@
         <entry key="../../../../layout/custom_preview.xml" value="0.1606714628297362" />
         <entry key="app/src/main/res/drawable/background.xml" value="0.268" />
         <entry key="app/src/main/res/drawable/default_dot.xml" value="0.3375" />
+        <entry key="app/src/main/res/drawable/ic_background.xml" value="0.2965" />
         <entry key="app/src/main/res/drawable/indicator_selector.xml" value="0.3375" />
         <entry key="app/src/main/res/drawable/selected_dot.xml" value="0.3375" />
         <entry key="app/src/main/res/font/font.xml" value="0.365625" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/fragment_first_screen.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/fragment_fourth_screen.xml" value="0.33645833333333336" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/fragment_second_screen.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_third_screen.xml" value="0.33645833333333336" />

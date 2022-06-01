@@ -12,10 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/backgroundColor</item>
         <!-- Customize your theme here. -->
-        <item name="android:windowSplashScreenIconBackgroundColor" tools:targetApi="s">
-            @color/white
-        </item>
-        <item name="android:background">@color/backgroundColor</item>
+        <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/backgroundColor</item>
+        <item name="android:colorBackground">@color/backgroundColor</item>
     </style>
 
     <style name="TitleTextAppearance">

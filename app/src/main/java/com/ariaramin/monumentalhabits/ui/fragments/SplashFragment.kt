@@ -8,9 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.ariaramin.monumentalhabits.PreferencesManager.SharedPreferencesManager
 import com.ariaramin.monumentalhabits.R
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SplashFragment : Fragment() {
+
+    @Inject
+    lateinit var preferencesManager: SharedPreferencesManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -18,8 +25,12 @@ class SplashFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         Handler(Looper.myLooper()!!).postDelayed({
-            findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
-        }, 2000)
+            if (preferencesManager.getOnBoardingStatus()) {
+                findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+            } else {
+                findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
+            }
+        }, 2500)
         return inflater.inflate(R.layout.fragment_splash, container, false)
     }
 }
