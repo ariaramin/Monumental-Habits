@@ -8,4 +8,7 @@
     <string name="next">Next</string>
     <string name="start">Start</string>
     <string name="homepage">Homepage</string>
+    <string name="courses">Courses</string>
+    <string name="community">Community</string>
+    <string name="settings">Settings</string>
 </resources>

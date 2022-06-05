@@ -48,4 +48,19 @@
         android:name="com.ariaramin.monumentalhabits.ui.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/communityFragment"
+        android:name="com.ariaramin.monumentalhabits.ui.fragments.CommunityFragment"
+        android:label="fragment_comminuty"
+        tools:layout="@layout/fragment_comminuty" />
+    <fragment
+        android:id="@+id/coursesFragment"
+        android:name="com.ariaramin.monumentalhabits.ui.fragments.CoursesFragment"
+        android:label="fragment_courses"
+        tools:layout="@layout/fragment_courses" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.ariaramin.monumentalhabits.ui.fragments.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

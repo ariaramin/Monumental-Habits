@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/homeFragment"
+        android:enabled="true"
+        android:icon="@drawable/home_icon_selector"
+        android:title="" />
+
+    <item
+        android:id="@+id/coursesFragment"
+        android:enabled="true"
+        android:icon="@drawable/courses_icon_selector"
+        android:title="" />
+
+    <item
+        android:id="@+id/placeholder"
+        android:title="" />
+
+    <item
+        android:id="@+id/communityFragment"
+        android:enabled="true"
+        android:icon="@drawable/community_icon_selector"
+        android:title="" />
+
+    <item
+        android:id="@+id/settingsFragment"
+        android:enabled="true"
+        android:icon="@drawable/settings_icon_selector"
+        android:title="" />
+</menu>
