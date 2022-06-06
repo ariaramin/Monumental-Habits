@@ -15,6 +15,7 @@
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.3385" />
         <entry key="app/src/main/res/drawable/ic_home_deactive.xml" value="0.2965" />
         <entry key="app/src/main/res/drawable/indicator_selector.xml" value="0.3375" />
+        <entry key="app/src/main/res/drawable/quote.xml" value="0.2965" />
         <entry key="app/src/main/res/drawable/selected_dot.xml" value="0.3375" />
         <entry key="app/src/main/res/drawable/settings_icon_selector.xml" value="0.3375" />
         <entry key="app/src/main/res/font/font.xml" value="0.365625" />
@@ -30,6 +31,8 @@
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_third_screen.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/fragment_view_pager.xml" value="0.33645833333333336" />
+        <entry key="app/src/main/res/layout/single_row_calendar_item_deselected.xml" value="0.33645833333333336" />
+        <entry key="app/src/main/res/layout/single_row_calendar_item_selected.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.33541666666666664" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3385" />
       </map>

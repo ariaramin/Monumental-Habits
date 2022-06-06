@@ -5,20 +5,37 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.ariaramin.monumentalhabits.Calendar.SingleRowCalendarManager
 import com.ariaramin.monumentalhabits.R
+import com.ariaramin.monumentalhabits.databinding.FragmentHomeBinding
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.michalsvec.singlerowcalendar.calendar.CalendarChangesObserver
+import com.michalsvec.singlerowcalendar.calendar.CalendarViewManager
+import com.michalsvec.singlerowcalendar.calendar.SingleRowCalendarAdapter
+import com.michalsvec.singlerowcalendar.selection.CalendarSelectionManager
+import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
+import javax.inject.Inject
 
+@AndroidEntryPoint
+class HomeFragment : Fragment(), CalendarChangesObserver {
 
-class HomeFragment : Fragment() {
+    private lateinit var binding: FragmentHomeBinding
+
+    @Inject
+    lateinit var singleRowCalendarManager: SingleRowCalendarManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
         visibleBottomAppbar()
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        singleRowCalendarManager.getCalendar(binding.singleRowCalendar, this)
+
+        return binding.root
     }
 
     private fun visibleBottomAppbar() {

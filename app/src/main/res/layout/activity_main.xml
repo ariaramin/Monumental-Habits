@@ -67,8 +67,10 @@
             android:src="@drawable/ic_add"
             android:visibility="gone"
             app:backgroundTint="@color/primaryColor"
-            app:fabCustomSize="60dp"
-            app:layout_anchor="@id/bottomAppBar" />
+            app:elevation="0dp"
+            app:fabCustomSize="62dp"
+            app:layout_anchor="@id/bottomAppBar"
+            app:tint="@color/onPrimary" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

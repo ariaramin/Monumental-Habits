@@ -1,6 +1,7 @@
 package com.ariaramin.monumentalhabits.Hilt.Modules
 
 import android.content.Context
+import com.ariaramin.monumentalhabits.Calendar.SingleRowCalendarManager
 import com.ariaramin.monumentalhabits.PreferencesManager.SharedPreferencesManager
 import dagger.Module
 import dagger.Provides
@@ -15,5 +16,10 @@ class HiltAppModules {
     @Provides
     fun provideSharedPreferencesManager(@ApplicationContext context: Context): SharedPreferencesManager {
         return SharedPreferencesManager(context)
+    }
+
+    @Provides
+    fun provideSingleRowCalendarManager(): SingleRowCalendarManager {
+        return SingleRowCalendarManager()
     }
 }
