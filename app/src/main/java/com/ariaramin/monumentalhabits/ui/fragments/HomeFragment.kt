@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.ariaramin.monumentalhabits.Calendar.SingleRowCalendarManager
 import com.ariaramin.monumentalhabits.R
 import com.ariaramin.monumentalhabits.databinding.FragmentHomeBinding
@@ -43,7 +44,14 @@ class HomeFragment : Fragment(), CalendarChangesObserver {
             requireActivity().findViewById<BottomAppBar>(R.id.bottomAppBar)
         val fab =
             requireActivity().findViewById<FloatingActionButton>(R.id.fab)
+        setUpFabNavigation(fab)
         bottomAppBar.visibility = View.VISIBLE
         fab.visibility = View.VISIBLE
+    }
+
+    private fun setUpFabNavigation(fab: FloatingActionButton) {
+        fab.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_addHabitFragment)
+        }
     }
 }

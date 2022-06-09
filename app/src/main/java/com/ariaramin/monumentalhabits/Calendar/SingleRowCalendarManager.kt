@@ -20,7 +20,7 @@ class SingleRowCalendarManager {
                 isSelected: Boolean
             ): Int {
                 // return item layout files, which you have created
-                return if (isSelected) {
+                return if (android.text.format.DateUtils.isToday(date.time)) {
                     R.layout.single_row_calendar_item_selected
                 } else {
                     R.layout.single_row_calendar_item_deselected
@@ -45,7 +45,7 @@ class SingleRowCalendarManager {
     private fun getSelectionManager(): CalendarSelectionManager {
         return object : CalendarSelectionManager {
             override fun canBeItemSelected(position: Int, date: Date): Boolean {
-                return true
+                return false
             }
         }
     }
@@ -85,8 +85,9 @@ class SingleRowCalendarManager {
             calendarViewManager = getCalendarViewManager()
             calendarChangesObserver = calendarObserver
             calendarSelectionManager = getSelectionManager()
-            futureDaysCount = 3
-            pastDaysCount = 3
+            pastDaysCount = 6
+            futureDaysCount = 0
+            initialPositionIndex = 6
             includeCurrentDate = true
             init()
         }
