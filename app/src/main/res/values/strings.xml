@@ -24,4 +24,6 @@
     <string name="saturday">Sat</string>
     <string name="reminder">Reminder</string>
     <string name="notification">Notification</string>
+    <string name="add_reminder">Add Reminder</string>
+    <string name="unselected">unselected</string>
 </resources>

@@ -35,6 +35,7 @@
         <entry key="app/src/main/res/layout/fragment_first_screen.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/fragment_fourth_screen.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.27713427713427713" />
+        <entry key="app/src/main/res/layout/fragment_reminder_dialog.xml" value="0.27618640444634457" />
         <entry key="app/src/main/res/layout/fragment_second_screen.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.33" />

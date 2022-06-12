@@ -52,4 +52,10 @@
         <item name="cornerSize">18dp</item>
     </style>
 
+    <style name="TimePicker" parent="ThemeOverlay.MaterialComponents.TimePicker">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorOnPrimary">@color/onPrimary</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/onPrimaryLight</item>
+    </style>
 </resources>

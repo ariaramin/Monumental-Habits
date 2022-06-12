@@ -73,7 +73,17 @@
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/addHabitFragment"
-        android:name="com.ariaramin.monumentalhabits.ui.fragments.AddHabitFragment"
+        android:name="com.ariaramin.monumentalhabits.ui.fragments.addHabit.AddHabitFragment"
         android:label="fragment_add_habit"
-        tools:layout="@layout/fragment_add_habit" />
+        tools:layout="@layout/fragment_add_habit" >
+        <action
+            android:id="@+id/action_addHabitFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/addHabitFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

@@ -4,10 +4,6 @@
     <color name="primaryColorLight">#33FEA800</color>
     <color name="secondaryColor">#F65B4E</color>
     <color name="secondaryColorLight">#33F65B4E</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
     <color name="backgroundColor">#FFF3E9</color>
     <color name="onPrimary">#573353</color>
     <color name="onPrimaryLight">#80573353</color>

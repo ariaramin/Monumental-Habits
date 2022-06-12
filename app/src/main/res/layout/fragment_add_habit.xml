@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background"
-        tools:context=".ui.fragments.AddHabitFragment">
+        tools:context=".ui.fragments.addHabit.AddHabitFragment">
 
         <RelativeLayout
             android:id="@+id/relativeLayout"
@@ -68,6 +68,7 @@
             app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/habitTitleTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/onPrimary" />
@@ -136,6 +137,7 @@
                             android:layout_width="42dp"
                             android:layout_height="42dp"
                             android:layout_margin="6dp"
+                            android:tag="@string/unselected"
                             app:cardBackgroundColor="@color/secondaryColorLight"
                             app:cardCornerRadius="18dp"
                             app:cardElevation="0dp" />
@@ -167,6 +169,7 @@
                             android:layout_width="42dp"
                             android:layout_height="42dp"
                             android:layout_margin="6dp"
+                            android:tag="@string/unselected"
                             app:cardBackgroundColor="@color/secondaryColorLight"
                             app:cardCornerRadius="18dp"
                             app:cardElevation="0dp" />
@@ -198,6 +201,7 @@
                             android:layout_width="42dp"
                             android:layout_height="42dp"
                             android:layout_margin="6dp"
+                            android:tag="@string/unselected"
                             app:cardBackgroundColor="@color/secondaryColorLight"
                             app:cardCornerRadius="18dp"
                             app:cardElevation="0dp" />
@@ -229,6 +233,7 @@
                             android:layout_width="42dp"
                             android:layout_height="42dp"
                             android:layout_margin="6dp"
+                            android:tag="@string/unselected"
                             app:cardBackgroundColor="@color/secondaryColorLight"
                             app:cardCornerRadius="18dp"
                             app:cardElevation="0dp" />
@@ -260,6 +265,7 @@
                             android:layout_width="42dp"
                             android:layout_height="42dp"
                             android:layout_margin="6dp"
+                            android:tag="@string/unselected"
                             app:cardBackgroundColor="@color/secondaryColorLight"
                             app:cardCornerRadius="18dp"
                             app:cardElevation="0dp" />
@@ -291,6 +297,7 @@
                             android:layout_width="42dp"
                             android:layout_height="42dp"
                             android:layout_margin="6dp"
+                            android:tag="@string/unselected"
                             app:cardBackgroundColor="@color/secondaryColorLight"
                             app:cardCornerRadius="18dp"
                             app:cardElevation="0dp" />
@@ -322,6 +329,7 @@
                             android:layout_width="42dp"
                             android:layout_height="42dp"
                             android:layout_margin="6dp"
+                            android:tag="@string/unselected"
                             app:cardBackgroundColor="@color/secondaryColorLight"
                             app:cardCornerRadius="18dp"
                             app:cardElevation="0dp" />
@@ -331,7 +339,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView2"
+            android:id="@+id/reminderCardView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -387,7 +395,7 @@
             app:contentPadding="14dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline15"
             app:layout_constraintStart_toStartOf="@+id/guideline14"
-            app:layout_constraintTop_toBottomOf="@+id/cardView2">
+            app:layout_constraintTop_toBottomOf="@+id/reminderCardView">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -395,6 +403,7 @@
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/notificationSwitch"
                     style="@style/DescriptionTextAppearance"
                     android:layout_width="match_parent"
                     android:layout_height="26dp"

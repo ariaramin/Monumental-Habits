@@ -6,10 +6,11 @@ import com.ariaramin.monumentalhabits.Utils.Constants
 
 @Entity(tableName = Constants.HABIT_TBL)
 data class Habit(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long,
     val title: String,
     val days: List<String>,
     val reminderTime: String,
     val isNotificationOn: Boolean
-)
+) {
+    @PrimaryKey(autoGenerate = true)
+    var id: Long = 0
+}
