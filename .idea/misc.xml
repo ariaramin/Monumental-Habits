@@ -42,6 +42,8 @@
         <entry key="app/src/main/res/layout/fragment_third_screen.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/fragment_view_pager.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/habit_contribution_square.xml" value="0.27618640444634457" />
+        <entry key="app/src/main/res/layout/habit_contribution_square_deselected.xml" value="0.27618640444634457" />
+        <entry key="app/src/main/res/layout/habit_contribution_square_selected.xml" value="0.27618640444634457" />
         <entry key="app/src/main/res/layout/habits_item_layout.xml" value="0.33" />
         <entry key="app/src/main/res/layout/single_row_calendar_item_deselected.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/single_row_calendar_item_selected.xml" value="0.33645833333333336" />

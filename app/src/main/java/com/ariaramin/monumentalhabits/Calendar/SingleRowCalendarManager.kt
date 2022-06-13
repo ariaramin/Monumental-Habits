@@ -1,7 +1,9 @@
 package com.ariaramin.monumentalhabits.Calendar
 
 import android.widget.TextView
+import com.ariaramin.monumentalhabits.Models.Habit
 import com.ariaramin.monumentalhabits.R
+import com.ariaramin.monumentalhabits.Utils.Constants
 import com.michalsvec.singlerowcalendar.calendar.CalendarChangesObserver
 import com.michalsvec.singlerowcalendar.calendar.CalendarViewManager
 import com.michalsvec.singlerowcalendar.calendar.SingleRowCalendar
@@ -12,7 +14,7 @@ import java.util.*
 
 class SingleRowCalendarManager {
 
-    private fun getCalendarViewManager(): CalendarViewManager {
+    private fun getCalendarViewManager(tag: Int, habit: Habit?): CalendarViewManager {
         return object : CalendarViewManager {
             override fun setCalendarViewResourceId(
                 position: Int,
@@ -20,10 +22,21 @@ class SingleRowCalendarManager {
                 isSelected: Boolean
             ): Int {
                 // return item layout files, which you have created
-                return if (android.text.format.DateUtils.isToday(date.time)) {
-                    R.layout.single_row_calendar_item_selected
+                return if (tag == Constants.CALENDAR_TAG) {
+                    if (android.text.format.DateUtils.isToday(date.time)) {
+                        R.layout.single_row_calendar_item_selected
+                    } else {
+                        R.layout.single_row_calendar_item_deselected
+                    }
                 } else {
-                    R.layout.single_row_calendar_item_deselected
+                    habit?.let { habit ->
+                        if (habit.markedDates.contains(date)) {
+                            R.layout.habit_contribution_square_selected
+                        } else {
+                            R.layout.habit_contribution_square_deselected
+                        }
+                    }
+                    R.layout.habit_contribution_square_deselected
                 }
             }
 
@@ -34,10 +47,12 @@ class SingleRowCalendarManager {
                 isSelected: Boolean
             ) {
                 // bind data to calendar item views
-                val dayTextView = holder.itemView.findViewById<TextView>(R.id.dayTextView)
-                val dateTextView = holder.itemView.findViewById<TextView>(R.id.dateTextView)
-                dayTextView.text = DateUtils.getDay3LettersName(date)
-                dateTextView.text = DateUtils.getDayNumber(date)
+                if (tag == 0) {
+                    val dayTextView = holder.itemView.findViewById<TextView>(R.id.dayTextView)
+                    val dateTextView = holder.itemView.findViewById<TextView>(R.id.dateTextView)
+                    dayTextView.text = DateUtils.getDay3LettersName(date)
+                    dateTextView.text = DateUtils.getDayNumber(date)
+                }
             }
         }
     }
@@ -50,39 +65,13 @@ class SingleRowCalendarManager {
         }
     }
 
-//    private fun getCalendarChangesObserver(): CalendarChangesObserver {
-//        return object : CalendarChangesObserver {
-//            override fun whenWeekMonthYearChanged(
-//                weekNumber: String,
-//                monthNumber: String,
-//                monthName: String,
-//                year: String,
-//                date: Date
-//            ) {
-//                super.whenWeekMonthYearChanged(weekNumber, monthNumber, monthName, year, date)
-//            }
-//
-//            override fun whenSelectionChanged(isSelected: Boolean, position: Int, date: Date) {
-//                super.whenSelectionChanged(isSelected, position, date)
-//            }
-//
-//            override fun whenCalendarScrolled(dx: Int, dy: Int) {
-//                super.whenCalendarScrolled(dx, dy)
-//            }
-//
-//            override fun whenSelectionRestored() {
-//                super.whenSelectionRestored()
-//            }
-//
-//            override fun whenSelectionRefreshed() {
-//                super.whenSelectionRefreshed()
-//            }
-//        }
-//    }
-
-    fun getCalendar(calendar: SingleRowCalendar, calendarObserver: CalendarChangesObserver): SingleRowCalendar {
+    fun getCalendar(
+        calendar: SingleRowCalendar,
+        tag: Int, habit: Habit?,
+        calendarObserver: CalendarChangesObserver
+    ): SingleRowCalendar {
         return calendar.apply {
-            calendarViewManager = getCalendarViewManager()
+            calendarViewManager = getCalendarViewManager(tag, habit)
             calendarChangesObserver = calendarObserver
             calendarSelectionManager = getSelectionManager()
             pastDaysCount = 6

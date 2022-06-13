@@ -41,6 +41,7 @@
             app:fabCradleMargin="12dp"
             app:fabCradleRoundedCornerRadius="112dp"
             app:fabCradleVerticalOffset="8dp"
+            app:hideOnScroll="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -70,6 +71,7 @@
             app:elevation="0dp"
             app:fabCustomSize="62dp"
             app:layout_anchor="@id/bottomAppBar"
+            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
             app:tint="@color/onPrimary" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

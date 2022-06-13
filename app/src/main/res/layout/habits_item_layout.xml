@@ -1,40 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp"
-    android:background="@drawable/habit_item_background"
-    android:gravity="center"
-    android:orientation="horizontal"
-    android:weightSum="3"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="@+id/guideline12"
-    app:layout_constraintTop_toTopOf="parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/habitTitleTextView"
-        style="@style/TitleTextAppearance"
-        android:layout_width="0dp"
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_weight="1"
-        android:textAlignment="textStart"
-        android:textSize="16sp"
-        tools:text="@string/habits" />
-
-    <View
-        android:layout_width="2dp"
-        android:layout_height="match_parent"
-        android:background="@color/backgroundColor" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/habit_item_background"
+        android:gravity="center"
         android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/habit_contribution_square" />
-</LinearLayout>
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:weightSum="3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/habitTitleTextView"
+            style="@style/TitleTextAppearance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:textAlignment="textStart"
+            android:textSize="16sp"
+            tools:text="@string/habits" />
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="@color/backgroundColor" />
+
+        <com.michalsvec.singlerowcalendar.calendar.SingleRowCalendar
+            android:id="@+id/contributionCalendar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            app:deselection="false"
+            app:longPress="false"
+            app:multiSelection="false" />
+    </LinearLayout>
+</layout>

@@ -1,7 +1,9 @@
 package com.ariaramin.monumentalhabits.ui.fragments.addHabit
 
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,9 +38,11 @@ class AddHabitFragment : Fragment() {
         binding = FragmentAddHabitBinding.inflate(inflater, container, false)
         fab = requireActivity().findViewById(R.id.fab)
         fab.setImageResource(R.drawable.ic_check)
+        fab.isEnabled = isDataValid()
         binding.backstackButton.setOnClickListener {
             requireActivity().onBackPressed()
         }
+        checkEnteredTitle()
         setDaysClickListener()
         binding.reminderCardView.setOnClickListener {
             showReminderTimePicker()
@@ -60,7 +64,6 @@ class AddHabitFragment : Fragment() {
 
     private fun createNewHabit(): Habit? {
         if (isDataValid()) {
-            fab.isEnabled = true
             val title = binding.habitTitleTextView.text.toString()
             val selectedDays = getSelectedDays()
             val selectedDaysId = selectedDays.map { selectedDay -> selectedDay.id.toString() }
@@ -72,34 +75,8 @@ class AddHabitFragment : Fragment() {
                 reminder,
                 isNotificationOn
             )
-        } else {
-            fab.isEnabled = false
-            return null
         }
-    }
-
-    private fun isDataValid(): Boolean {
-        return isTitleEmpty() and getSelectedDays().isNotEmpty()
-    }
-
-    private fun getSelectedDays(): List<CardView> {
-        val days = arrayOf(
-            binding.sundayCardView,
-            binding.mondayCardView,
-            binding.tuesdayCardView,
-            binding.wednesdayCardView,
-            binding.thursdayCardView,
-            binding.fridayCardView,
-            binding.saturdayCardView
-        )
-        return days.filter { day ->
-            day.tag.equals(Constants.SELECTED)
-        }
-    }
-
-    private fun isTitleEmpty(): Boolean {
-        val text = binding.habitTitleTextView.text.toString()
-        return TextUtils.isEmpty(text)
+        return null
     }
 
     private fun showReminderTimePicker() {
@@ -109,10 +86,17 @@ class AddHabitFragment : Fragment() {
             .setTitleText(getString(R.string.add_reminder))
             .build()
         picker.addOnPositiveButtonClickListener {
-            val time = "${picker.hour}:${picker.minute} ${if (picker.hour < 12) "AM" else "PM"}"
-            binding.reminderTextView.text = time
+            setReminderTimeToTextView(picker)
         }
         picker.show(parentFragmentManager, Constants.TIME_PICKER)
+    }
+
+    private fun setReminderTimeToTextView(picker: MaterialTimePicker) {
+        val hour = picker.hour
+        val minute = if (picker.minute < 10) "0${picker.minute}" else picker.minute
+        val amOrPm = if (picker.hour < 12) "AM" else "PM"
+        val time = "$hour:$minute $amOrPm"
+        binding.reminderTextView.text = time
     }
 
     private fun setDaysClickListener() {
@@ -125,13 +109,34 @@ class AddHabitFragment : Fragment() {
         val saturday = binding.saturdayCardView
         val clickListener = View.OnClickListener { v ->
             when (v.id) {
-                (sunday.id) -> selectDay(sunday)
-                (monday.id) -> selectDay(monday)
-                (tuesday.id) -> selectDay(tuesday)
-                (wednesday.id) -> selectDay(wednesday)
-                (thursday.id) -> selectDay(thursday)
-                (friday.id) -> selectDay(friday)
-                (saturday.id) -> selectDay(saturday)
+                (sunday.id) -> {
+                    selectDay(sunday)
+                    fab.isEnabled = isDataValid()
+                }
+                (monday.id) -> {
+                    selectDay(monday)
+                    fab.isEnabled = isDataValid()
+                }
+                (tuesday.id) -> {
+                    selectDay(tuesday)
+                    fab.isEnabled = isDataValid()
+                }
+                (wednesday.id) -> {
+                    selectDay(wednesday)
+                    fab.isEnabled = isDataValid()
+                }
+                (thursday.id) -> {
+                    selectDay(thursday)
+                    fab.isEnabled = isDataValid()
+                }
+                (friday.id) -> {
+                    selectDay(friday)
+                    fab.isEnabled = isDataValid()
+                }
+                (saturday.id) -> {
+                    selectDay(saturday)
+                    fab.isEnabled = isDataValid()
+                }
             }
         }
         sunday.setOnClickListener(clickListener)
@@ -160,6 +165,42 @@ class AddHabitFragment : Fragment() {
             day.setCardBackgroundColor(primaryColor)
             day.tag = Constants.SELECTED
         }
+    }
+
+    private fun checkEnteredTitle() {
+        binding.habitTitleTextView.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                fab.isEnabled = isDataValid()
+            }
+
+            override fun afterTextChanged(p0: Editable?) {}
+        })
+    }
+
+    private fun isDataValid(): Boolean {
+        return !isTitleEmpty() and getSelectedDays().isNotEmpty()
+    }
+
+    private fun getSelectedDays(): List<CardView> {
+        val days = arrayOf(
+            binding.sundayCardView,
+            binding.mondayCardView,
+            binding.tuesdayCardView,
+            binding.wednesdayCardView,
+            binding.thursdayCardView,
+            binding.fridayCardView,
+            binding.saturdayCardView
+        )
+        return days.filter { day ->
+            day.tag.equals(Constants.SELECTED)
+        }
+    }
+
+    private fun isTitleEmpty(): Boolean {
+        val text = binding.habitTitleTextView.text.toString()
+        return TextUtils.isEmpty(text)
     }
 
     override fun onDestroy() {
