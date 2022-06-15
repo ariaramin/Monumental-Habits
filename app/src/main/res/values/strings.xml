@@ -22,8 +22,10 @@
     <string name="thursday">Thu</string>
     <string name="friday">Fri</string>
     <string name="saturday">Sat</string>
+    <string name="contribution_color">Contribution Color</string>
     <string name="reminder">Reminder</string>
     <string name="notification">Notification</string>
     <string name="add_reminder">Add Reminder</string>
+    <string name="selected">selected</string>
     <string name="unselected">unselected</string>
 </resources>

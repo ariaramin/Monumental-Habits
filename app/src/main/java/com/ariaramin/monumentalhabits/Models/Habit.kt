@@ -10,6 +10,7 @@ import kotlin.collections.ArrayList
 data class Habit(
     val title: String,
     val days: List<String>,
+    val color: Int,
     val reminderTime: String,
     val isNotificationOn: Boolean
 ) {

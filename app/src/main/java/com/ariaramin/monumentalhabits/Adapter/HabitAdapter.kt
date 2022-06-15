@@ -12,7 +12,7 @@ import com.michalsvec.singlerowcalendar.calendar.CalendarChangesObserver
 class HabitAdapter(
     private var habitList: List<Habit>,
     private val singleRowCalendarManager: SingleRowCalendarManager
-) : RecyclerView.Adapter<HabitAdapter.HabitViewHolder>(), RecyclerViewOnScrollListener {
+) : RecyclerView.Adapter<HabitAdapter.HabitViewHolder>() {
 
     private lateinit var binding: HabitsItemLayoutBinding
 
@@ -36,11 +36,7 @@ class HabitAdapter(
         notifyDataSetChanged()
     }
 
-    override fun scrollBy(dx: Int) {
-        binding.contributionCalendar.scrollX = dx
-    }
-
-    inner class HabitViewHolder(private val binding: HabitsItemLayoutBinding) :
+    inner class HabitViewHolder(val binding: HabitsItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root), CalendarChangesObserver {
 
         fun bindData(habit: Habit, singleRowCalendarManager: SingleRowCalendarManager) {
@@ -51,6 +47,7 @@ class HabitAdapter(
                 habit,
                 this
             )
+            binding.contributionCalendar.suppressLayout(true)
         }
     }
 

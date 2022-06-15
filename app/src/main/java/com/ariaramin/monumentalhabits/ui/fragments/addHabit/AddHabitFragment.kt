@@ -7,6 +7,8 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -17,6 +19,7 @@ import com.ariaramin.monumentalhabits.Models.Habit
 import com.ariaramin.monumentalhabits.R
 import com.ariaramin.monumentalhabits.Utils.Constants
 import com.ariaramin.monumentalhabits.databinding.FragmentAddHabitBinding
+import com.google.android.material.card.MaterialCardView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
@@ -29,6 +32,7 @@ class AddHabitFragment : Fragment() {
     private lateinit var binding: FragmentAddHabitBinding
     private val mainViewModel by viewModels<MainViewModel>()
     private lateinit var fab: FloatingActionButton
+    private var selectedColor: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,13 +41,15 @@ class AddHabitFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentAddHabitBinding.inflate(inflater, container, false)
         fab = requireActivity().findViewById(R.id.fab)
-        fab.setImageResource(R.drawable.ic_check)
+        selectedColor = binding.firstColorCardView.cardBackgroundColor.defaultColor
+        changeFabIconAnimation(R.drawable.ic_check)
         fab.isEnabled = isDataValid()
+        checkEnteredTitle()
+        setDaysClickListener()
+        setColorClickListener()
         binding.backstackButton.setOnClickListener {
             requireActivity().onBackPressed()
         }
-        checkEnteredTitle()
-        setDaysClickListener()
         binding.reminderCardView.setOnClickListener {
             showReminderTimePicker()
         }
@@ -72,6 +78,7 @@ class AddHabitFragment : Fragment() {
             return Habit(
                 title,
                 selectedDaysId,
+                selectedColor,
                 reminder,
                 isNotificationOn
             )
@@ -99,6 +106,78 @@ class AddHabitFragment : Fragment() {
         binding.reminderTextView.text = time
     }
 
+    private fun setColorClickListener() {
+        val first = binding.firstColorCardView
+        val second = binding.secondColorCardView
+        val third = binding.thirdColorCardView
+        val fourth = binding.fourthColorCardView
+        val fifth = binding.fifthColorCardView
+        val sixth = binding.sixthColorCardView
+        val seventh = binding.seventhColorCardView
+        val colorList = arrayListOf(first, second, third, fourth, fifth, sixth, seventh)
+        val clickListener = View.OnClickListener { v ->
+            when (v.id) {
+                (first.id) -> {
+                    selectColor(
+                        first,
+                        colorList.filter { color -> color != first }
+                    )
+                }
+                (second.id) -> {
+                    selectColor(
+                        second,
+                        colorList.filter { color -> color != second }
+                    )
+                }
+                (third.id) -> {
+                    selectColor(
+                        third,
+                        colorList.filter { color -> color != third }
+                    )
+                }
+                (fourth.id) -> {
+                    selectColor(
+                        fourth,
+                        colorList.filter { color -> color != fourth }
+                    )
+                }
+                (fifth.id) -> {
+                    selectColor(
+                        fifth,
+                        colorList.filter { color -> color != fifth }
+                    )
+                }
+                (sixth.id) -> {
+                    selectColor(
+                        sixth,
+                        colorList.filter { color -> color != sixth }
+                    )
+                }
+                (seventh.id) -> {
+                    selectColor(
+                        seventh,
+                        colorList.filter { color -> color != seventh }
+                    )
+                }
+            }
+        }
+        for (color in colorList) {
+            color.setOnClickListener(clickListener)
+        }
+    }
+
+    private fun selectColor(card: MaterialCardView, colorList: List<MaterialCardView>) {
+        card.strokeWidth = 8
+        selectedColor = card.cardBackgroundColor.defaultColor
+        disableColor(colorList)
+    }
+
+    private fun disableColor(colorList: List<MaterialCardView>) {
+        for (color in colorList) {
+            color.strokeWidth = 0
+        }
+    }
+
     private fun setDaysClickListener() {
         val sunday = binding.sundayCardView
         val monday = binding.mondayCardView
@@ -107,6 +186,7 @@ class AddHabitFragment : Fragment() {
         val thursday = binding.thursdayCardView
         val friday = binding.fridayCardView
         val saturday = binding.saturdayCardView
+        val dayList = arrayListOf(sunday, monday, tuesday, wednesday, thursday, friday, saturday)
         val clickListener = View.OnClickListener { v ->
             when (v.id) {
                 (sunday.id) -> {
@@ -139,13 +219,9 @@ class AddHabitFragment : Fragment() {
                 }
             }
         }
-        sunday.setOnClickListener(clickListener)
-        monday.setOnClickListener(clickListener)
-        tuesday.setOnClickListener(clickListener)
-        wednesday.setOnClickListener(clickListener)
-        thursday.setOnClickListener(clickListener)
-        friday.setOnClickListener(clickListener)
-        saturday.setOnClickListener(clickListener)
+        for (day in dayList) {
+            day.setOnClickListener(clickListener)
+        }
     }
 
     private fun selectDay(day: CardView) {
@@ -203,9 +279,32 @@ class AddHabitFragment : Fragment() {
         return TextUtils.isEmpty(text)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    private fun changeFabIconAnimation(icon: Int) {
+        val fadeOutAnime =
+            AnimationUtils.loadAnimation(requireContext(), androidx.transition.R.anim.abc_fade_out)
+        val fadeInAnime =
+            AnimationUtils.loadAnimation(requireContext(), androidx.transition.R.anim.abc_fade_in)
+        fab.startAnimation(fadeOutAnime)
+        fadeOutAnime.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationStart(p0: Animation?) {}
+
+            override fun onAnimationEnd(p0: Animation?) {
+                fab.startAnimation(fadeInAnime)
+                fab.setImageResource(icon)
+            }
+
+            override fun onAnimationRepeat(p0: Animation?) {}
+        })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        changeFabIconAnimation(R.drawable.ic_check)
+    }
+
+    override fun onStop() {
+        super.onStop()
         if (!fab.isEnabled) fab.isEnabled = true
-        fab.setImageResource(R.drawable.ic_add)
+        changeFabIconAnimation(R.drawable.ic_add)
     }
 }

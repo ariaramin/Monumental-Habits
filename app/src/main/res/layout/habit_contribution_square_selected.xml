@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="68dp"
-    android:layout_height="68dp"
+    android:id="@+id/habitContributionCardView"
+    android:layout_width="66dp"
+    android:layout_height="66dp"
     android:layout_margin="6dp"
-    app:cardBackgroundColor="@color/primaryColor"
     app:cardCornerRadius="18dp"
     app:cardElevation="0dp" />

@@ -5,10 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.children
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.ariaramin.monumentalhabits.Adapter.HabitAdapter
-import com.ariaramin.monumentalhabits.Adapter.RecyclerViewOnScrollListener
 import com.ariaramin.monumentalhabits.Calendar.SingleRowCalendarManager
 import com.ariaramin.monumentalhabits.MainViewModel
 import com.ariaramin.monumentalhabits.Models.Habit
@@ -29,7 +29,6 @@ class HomeFragment : Fragment(), CalendarChangesObserver {
     @Inject
     lateinit var singleRowCalendarManager: SingleRowCalendarManager
     private val mainViewModel by viewModels<MainViewModel>()
-    private var recyclerViewOnScrollListener: RecyclerViewOnScrollListener? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,18 +57,23 @@ class HomeFragment : Fragment(), CalendarChangesObserver {
     private fun showDataInRecyclerView(habitList: List<Habit>) {
         if (binding.habitsRecyclerView.adapter == null) {
             val adapter = HabitAdapter(habitList, singleRowCalendarManager)
-            recyclerViewOnScrollListener = adapter
             binding.habitsRecyclerView.adapter = adapter
         } else {
             val adapter = binding.habitsRecyclerView.adapter as HabitAdapter
-            recyclerViewOnScrollListener = adapter
             adapter.updateList(habitList)
         }
     }
 
     override fun whenCalendarScrolled(dx: Int, dy: Int) {
         super.whenCalendarScrolled(dx, dy)
-        recyclerViewOnScrollListener?.scrollBy(dx)
+        val recyclerView = binding.habitsRecyclerView
+        for (i in recyclerView.children) {
+            val holder = recyclerView.getChildViewHolder(i) as HabitAdapter.HabitViewHolder
+            val contributionCalendar = holder.binding.contributionCalendar
+            contributionCalendar.suppressLayout(false)
+            contributionCalendar.scrollBy(dx, 0)
+            contributionCalendar.suppressLayout(true)
+        }
     }
 
     private fun visibleBottomAppbar() {
