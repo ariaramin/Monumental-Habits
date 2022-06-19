@@ -1,10 +1,13 @@
 package com.ariaramin.monumentalhabits.Adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.ariaramin.monumentalhabits.Calendar.SingleRowCalendarManager
 import com.ariaramin.monumentalhabits.Models.Habit
+import com.ariaramin.monumentalhabits.R
 import com.ariaramin.monumentalhabits.Utils.Constants
 import com.ariaramin.monumentalhabits.databinding.HabitsItemLayoutBinding
 import com.michalsvec.singlerowcalendar.calendar.CalendarChangesObserver
@@ -48,6 +51,11 @@ class HabitAdapter(
                 this
             )
             binding.contributionCalendar.suppressLayout(true)
+            binding.root.setOnClickListener { view ->
+                val bundle = Bundle()
+                bundle.putParcelable(Constants.HABIT, habit)
+                Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_habitFragment, bundle)
+            }
         }
     }
 

@@ -1,4 +1,4 @@
-package com.ariaramin.monumentalhabits.ui.fragments.addHabit
+package com.ariaramin.monumentalhabits.ui.fragments
 
 import android.os.Bundle
 import android.text.Editable
@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.LinearLayout
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -72,7 +73,9 @@ class AddHabitFragment : Fragment() {
         if (isDataValid()) {
             val title = binding.habitTitleTextView.text.toString()
             val selectedDays = getSelectedDays()
-            val selectedDaysId = selectedDays.map { selectedDay -> selectedDay.id.toString() }
+            val selectedDaysId = selectedDays.map { selectedDay ->
+                (selectedDay.parent as LinearLayout).tag.toString()
+            }
             val reminder = binding.reminderTextView.text.toString()
             val isNotificationOn = binding.notificationSwitch.isChecked
             return Habit(

@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background"
-        tools:context=".ui.fragments.addHabit.AddHabitFragment">
+        tools:context=".ui.fragments.AddHabitFragment">
 
         <RelativeLayout
             android:id="@+id/relativeLayout"
@@ -122,7 +122,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:tag="@string/sunday">
 
                         <TextView
                             style="@style/DescriptionTextAppearance"
@@ -149,7 +150,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:tag="@string/monday">
 
                         <TextView
                             style="@style/DescriptionTextAppearance"
@@ -176,7 +178,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:tag="@string/tuesday">
 
                         <TextView
                             style="@style/DescriptionTextAppearance"
@@ -203,7 +206,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:tag="@string/wednesday">
 
                         <TextView
                             style="@style/DescriptionTextAppearance"
@@ -230,7 +234,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:tag="@string/thursday">
 
                         <TextView
                             style="@style/DescriptionTextAppearance"
@@ -257,7 +262,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:tag="@string/friday">
 
                         <TextView
                             style="@style/DescriptionTextAppearance"
@@ -284,7 +290,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:tag="@string/saturday">
 
                         <TextView
                             style="@style/DescriptionTextAppearance"

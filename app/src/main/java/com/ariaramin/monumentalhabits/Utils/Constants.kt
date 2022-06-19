@@ -10,4 +10,5 @@ object Constants {
     const val UNSELECTED = "unselected"
     const val CALENDAR_TAG = 0
     const val CONTRIBUTION_TAG = 1
+    const val HABIT = "habit"
 }
