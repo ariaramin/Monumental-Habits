@@ -1,15 +1,15 @@
 package com.ariaramin.monumentalhabits.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.content.ContextCompat
-import androidx.core.view.children
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import com.ariaramin.monumentalhabits.Calendar.DayViewContainer
 import com.ariaramin.monumentalhabits.Calendar.MonthViewContainer
+import com.ariaramin.monumentalhabits.MainViewModel
 import com.ariaramin.monumentalhabits.Models.Habit
 import com.ariaramin.monumentalhabits.R
 import com.ariaramin.monumentalhabits.Utils.Constants
@@ -21,16 +21,21 @@ import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import com.kizitonwose.calendarview.utils.next
 import com.kizitonwose.calendarview.utils.previous
-import java.sql.Date
+import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.time.YearMonth
+import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.temporal.WeekFields
 import java.util.*
+import kotlin.collections.ArrayList
 
-
+@AndroidEntryPoint
 class HabitFragment : Fragment() {
 
     private lateinit var binding: FragmentHabitBinding
+    private val mainViewModel by viewModels<MainViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,15 +49,44 @@ class HabitFragment : Fragment() {
             binding.pageTitleTextView.text = habit.title
             setupHabitDetails(habit)
             setupCalendar(habit)
+            binding.markAsCompleteButton.setOnClickListener { view ->
+                markHabitAsCompleted(habit, view)
+            }
+            binding.markAsMissedButton.setOnClickListener { view ->
+                markHabitAsMissed(habit, view)
+            }
         }
-        setupCalendarHeader()
-        setMonthTextView()
-        nextButtonHandler()
-        previousButtonHandler()
 
         return binding.root
     }
 
+    private fun markHabitAsCompleted(habit: Habit, view: View) {
+        if (habit.markedAsMissedDates.contains(getToday())) {
+            val dates = habit.markedAsMissedDates as ArrayList<String>
+            dates.remove(getToday())
+        } else {
+            if (!habit.markedAsCompletedDates.contains(getToday())) {
+                val dates = habit.markedAsCompletedDates as ArrayList<String>
+                dates.add(getToday())
+            }
+        }
+        mainViewModel.updateHabit(habit)
+        Navigation.findNavController(view).navigate(R.id.action_habitFragment_to_homeFragment)
+    }
+
+    private fun markHabitAsMissed(habit: Habit, view: View) {
+        if (habit.markedAsCompletedDates.contains(getToday())) {
+            val dates = habit.markedAsCompletedDates as ArrayList<String>
+            dates.remove(getToday())
+        } else {
+            if (!habit.markedAsMissedDates.contains(getToday())) {
+                val dates = habit.markedAsMissedDates as ArrayList<String>
+                dates.add(getToday())
+            }
+        }
+        mainViewModel.updateHabit(habit)
+        Navigation.findNavController(view).navigate(R.id.action_habitFragment_to_homeFragment)
+    }
 
     private fun setupCalendarHeader() {
         binding.calendarView.monthHeaderBinder =
@@ -63,6 +97,14 @@ class HabitFragment : Fragment() {
     }
 
     private fun setupCalendar(habit: Habit) {
+        setupCalendarDay(habit)
+        setupCalendarHeader()
+        setMonthTextView()
+        nextButtonHandler()
+        previousButtonHandler()
+    }
+
+    private fun setupCalendarDay(habit: Habit) {
         setupCalendarDate()
         binding.calendarView.dayBinder = object : DayBinder<DayViewContainer> {
             override fun create(view: View) = DayViewContainer(view)
@@ -75,12 +117,23 @@ class HabitFragment : Fragment() {
                 } else {
                     binding.calendarDayLayout.alpha = 0.5f
                 }
-                if (habit.markedDates.contains(Date.valueOf(day.date.toString()))) {
+                if (habit.markedAsCompletedDates.contains(convertToString(day.date))) {
                     binding.calendarDayLayout.setCardBackgroundColor(habit.color)
                     binding.calendarDayTextView.setTextColor(R.color.backgroundColor)
                 }
             }
         }
+    }
+
+    private fun convertToString(localDate: LocalDate): String {
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy")
+        val date = Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant())
+        return dateFormat.format(date)
+    }
+
+    private fun getToday(): String {
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy")
+        return dateFormat.format(Date())
     }
 
     private fun setMonthTextView() {

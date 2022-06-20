@@ -1,9 +1,6 @@
 package com.ariaramin.monumentalhabits.Room
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.ariaramin.monumentalhabits.Models.Habit
 import com.ariaramin.monumentalhabits.Utils.Constants
 
@@ -14,5 +11,8 @@ interface DatabaseDao {
     suspend fun insert(habit: Habit)
 
     @Query("SELECT * FROM ${Constants.HABIT_TBL}")
-    suspend fun read() : List<Habit>
+    suspend fun read(): List<Habit>
+
+    @Update
+    suspend fun update(habit: Habit)
 }

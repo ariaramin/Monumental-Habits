@@ -35,4 +35,11 @@ class MainViewModel @Inject constructor(
             }
         }
     }
+
+    fun updateHabit(habit: Habit) {
+        viewModelScope.launch {
+            mainRepository.updateHabit(habit)
+        }
+    }
+
 }

@@ -11,6 +11,7 @@ import com.michalsvec.singlerowcalendar.calendar.SingleRowCalendar
 import com.michalsvec.singlerowcalendar.calendar.SingleRowCalendarAdapter
 import com.michalsvec.singlerowcalendar.selection.CalendarSelectionManager
 import com.michalsvec.singlerowcalendar.utils.DateUtils
+import java.text.SimpleDateFormat
 import java.util.*
 
 class SingleRowCalendarManager {
@@ -34,7 +35,7 @@ class SingleRowCalendarManager {
                     }
                 } else {
                     if (habit != null) {
-                        if (habit.markedDates.contains(date)) {
+                        if (habit.markedAsCompletedDates.contains(convertToString(date))) {
                             R.layout.habit_contribution_square_selected
                         } else {
                             R.layout.habit_contribution_square_deselected
@@ -59,7 +60,7 @@ class SingleRowCalendarManager {
                     dateTextView.text = DateUtils.getDayNumber(date)
                 } else {
                     habit?.let { habit ->
-                        if (habit.markedDates.contains(date)) {
+                        if (habit.markedAsCompletedDates.contains(convertToString(date))) {
                             val cardView =
                                 holder.itemView.findViewById<CardView>(R.id.habitContributionCardView)
                             cardView.setCardBackgroundColor(habit.color)
@@ -68,6 +69,11 @@ class SingleRowCalendarManager {
                 }
             }
         }
+    }
+
+    private fun convertToString(date: Date): String {
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy")
+        return dateFormat.format(date)
     }
 
     private fun getSelectionManager(): CalendarSelectionManager {

@@ -5,7 +5,6 @@ import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.ariaramin.monumentalhabits.Utils.Constants
-import java.util.*
 import kotlin.collections.ArrayList
 
 @Entity(tableName = Constants.HABIT_TBL)
@@ -18,7 +17,8 @@ data class Habit(
 ) : Parcelable {
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0
-    var markedDates: List<Date> = ArrayList()
+    var markedAsCompletedDates: List<String> = ArrayList()
+    var markedAsMissedDates: List<String> = ArrayList()
 
     constructor(parcel: Parcel) : this(
         parcel.readString().toString(),
