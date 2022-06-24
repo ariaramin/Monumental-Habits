@@ -11,4 +11,7 @@ object Constants {
     const val CALENDAR_TAG = 0
     const val CONTRIBUTION_TAG = 1
     const val HABIT = "habit"
+    const val DATE_FORMAT = "yyyy/MM/dd"
+//    const val EDIT = "edit"
+//    const val ADD = "add"
 }

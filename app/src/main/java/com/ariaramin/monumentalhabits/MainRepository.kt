@@ -10,4 +10,6 @@ class MainRepository(private val databaseDao: DatabaseDao) {
     suspend fun readHabits() = databaseDao.read()
 
     suspend fun updateHabit(habit: Habit) = databaseDao.update(habit)
+
+    suspend fun deleteHabit(habit: Habit) = databaseDao.delete(habit)
 }

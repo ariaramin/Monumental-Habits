@@ -1,9 +1,11 @@
 package com.ariaramin.monumentalhabits.ui.fragments
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -25,11 +27,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.YearMonth
-import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.temporal.WeekFields
 import java.util.*
-import kotlin.collections.ArrayList
+import java.util.concurrent.TimeUnit
+import kotlin.math.max
 
 @AndroidEntryPoint
 class HabitFragment : Fragment() {
@@ -43,12 +45,21 @@ class HabitFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentHabitBinding.inflate(inflater, container, false)
+        binding.backstackButton.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
         val args = arguments
-        args?.let { bundle ->
-            val habit = bundle.getParcelable<Habit>(Constants.HABIT)!!
+        args?.let {
+            val habit = it.getParcelable<Habit>(Constants.HABIT)!!
             binding.pageTitleTextView.text = habit.title
             setupHabitDetails(habit)
             setupCalendar(habit)
+            binding.editButton.setOnClickListener { view ->
+                val bundle = Bundle()
+                bundle.putParcelable(Constants.HABIT, habit)
+                Navigation.findNavController(view)
+                    .navigate(R.id.action_habitFragment_to_addHabitFragment, bundle)
+            }
             binding.markAsCompleteButton.setOnClickListener { view ->
                 markHabitAsCompleted(habit, view)
             }
@@ -61,31 +72,34 @@ class HabitFragment : Fragment() {
     }
 
     private fun markHabitAsCompleted(habit: Habit, view: View) {
-        if (habit.markedAsMissedDates.contains(getToday())) {
-            val dates = habit.markedAsMissedDates as ArrayList<String>
-            dates.remove(getToday())
-        } else {
+        if (habit.days.contains(getDayOfTheWeek())) {
             if (!habit.markedAsCompletedDates.contains(getToday())) {
                 val dates = habit.markedAsCompletedDates as ArrayList<String>
                 dates.add(getToday())
             }
+            mainViewModel.updateHabit(habit)
+            Navigation.findNavController(view).navigate(R.id.action_habitFragment_to_homeFragment)
+        } else {
+            Toast.makeText(context, getString(R.string.not_include_today), Toast.LENGTH_SHORT)
+                .show()
         }
-        mainViewModel.updateHabit(habit)
-        Navigation.findNavController(view).navigate(R.id.action_habitFragment_to_homeFragment)
+    }
+
+    private fun getDayOfTheWeek(): String {
+        val sdf = SimpleDateFormat("EEE")
+        val d = Date()
+        return sdf.format(d).uppercase(Locale.getDefault())
     }
 
     private fun markHabitAsMissed(habit: Habit, view: View) {
         if (habit.markedAsCompletedDates.contains(getToday())) {
             val dates = habit.markedAsCompletedDates as ArrayList<String>
             dates.remove(getToday())
+            mainViewModel.updateHabit(habit)
+            Navigation.findNavController(view).navigate(R.id.action_habitFragment_to_homeFragment)
         } else {
-            if (!habit.markedAsMissedDates.contains(getToday())) {
-                val dates = habit.markedAsMissedDates as ArrayList<String>
-                dates.add(getToday())
-            }
+            Toast.makeText(context, getString(R.string.not_completed), Toast.LENGTH_SHORT).show()
         }
-        mainViewModel.updateHabit(habit)
-        Navigation.findNavController(view).navigate(R.id.action_habitFragment_to_homeFragment)
     }
 
     private fun setupCalendarHeader() {
@@ -119,20 +133,18 @@ class HabitFragment : Fragment() {
                 }
                 if (habit.markedAsCompletedDates.contains(convertToString(day.date))) {
                     binding.calendarDayLayout.setCardBackgroundColor(habit.color)
-                    binding.calendarDayTextView.setTextColor(R.color.backgroundColor)
+                    binding.calendarDayTextView.setTextColor(Color.WHITE)
                 }
             }
         }
     }
 
     private fun convertToString(localDate: LocalDate): String {
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy")
-        val date = Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant())
-        return dateFormat.format(date)
+        return DateTimeFormatter.ofPattern(Constants.DATE_FORMAT).format(localDate)
     }
 
     private fun getToday(): String {
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy")
+        val dateFormat = SimpleDateFormat(Constants.DATE_FORMAT)
         return dateFormat.format(Date())
     }
 
@@ -173,6 +185,51 @@ class HabitFragment : Fragment() {
         binding.habitTitleTextView.text = habit.title
         binding.repeatDaysTextView.text = getRepeatDays(habit.days)
         binding.reminderTextView.text = habit.reminderTime
+        binding.longestStreakTextView.text = "${getLongestStreak(habit)} Days"
+        binding.currentStreakTextView.text = "${getCurrentStreak(habit)} Days"
+        binding.completionRateTextView.text = "${getCompletionRate(habit)}%"
+    }
+
+    private fun getCompletionRate(habit: Habit): Int {
+        val totalDaysCount = getDifferenceDays(habit.createdAt)
+        val markedDatesCount = habit.markedAsCompletedDates.size
+        return if (totalDaysCount == 0) {
+            if (markedDatesCount != 0) markedDatesCount * 100 else 0
+        } else (markedDatesCount / totalDaysCount) * 100
+    }
+
+    private fun getDifferenceDays(date: Long): Int {
+        val today = Date().time
+        val different = today - date
+        return TimeUnit.DAYS.convert(different, TimeUnit.MILLISECONDS).toInt()
+    }
+
+    private fun getCurrentStreak(habit: Habit): Int {
+        var count = 0
+        var currentStreak = 0
+        val dates = habit.markedAsCompletedDates
+        dates.map { date -> date.replace("/", "").toLong() }
+        for (i in dates.indices) {
+            if (i > 0) {
+                if (dates[i] == (dates[i - 1] + 1)) count++ else count = 1
+            } else count = 1
+            currentStreak = count
+        }
+        return currentStreak
+    }
+
+    private fun getLongestStreak(habit: Habit): Int {
+        var count = 0
+        var longestStreak = 0
+        val dates = habit.markedAsCompletedDates
+        dates.map { date -> date.replace("/", "").toLong() }
+        for (i in dates.indices) {
+            if (i > 0) {
+                if (dates[i] == (dates[i - 1] + 1)) count++ else count = 1
+            } else count = 1
+            longestStreak = max(longestStreak, count)
+        }
+        return longestStreak
     }
 
     private fun getRepeatDays(days: List<String>): String {

@@ -42,9 +42,28 @@ class AddHabitFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentAddHabitBinding.inflate(inflater, container, false)
         fab = requireActivity().findViewById(R.id.fab)
-        selectedColor = binding.firstColorCardView.cardBackgroundColor.defaultColor
         changeFabIconAnimation(R.drawable.ic_check)
         fab.isEnabled = isDataValid()
+        selectedColor = binding.firstColorCardView.cardBackgroundColor.defaultColor
+        val args = arguments
+        if (args != null) {
+            val habit = args.getParcelable<Habit>(Constants.HABIT)!!
+            selectedColor = habit.color
+            setupHabitDetail(habit)
+            fab.isEnabled = isDataValid()
+            binding.deleteButton.visibility = View.VISIBLE
+            binding.deleteButton.setOnClickListener {
+                deleteHabit(habit)
+            }
+            fab.setOnClickListener {
+                updateHabit(habit)
+            }
+        } else {
+            binding.deleteButton.visibility = View.GONE
+            fab.setOnClickListener {
+                saveHabit()
+            }
+        }
         checkEnteredTitle()
         setDaysClickListener()
         setColorClickListener()
@@ -54,11 +73,75 @@ class AddHabitFragment : Fragment() {
         binding.reminderCardView.setOnClickListener {
             showReminderTimePicker()
         }
-        fab.setOnClickListener {
-            saveHabit()
-        }
 
         return binding.root
+    }
+
+    private fun deleteHabit(habit: Habit) {
+        mainViewModel.deleteHabit(habit)
+        findNavController().navigate(R.id.action_addHabitFragment_to_homeFragment)
+    }
+
+    private fun updateHabit(habit: Habit) {
+        updateHabitInfo(habit)
+        mainViewModel.updateHabit(habit)
+        findNavController().navigate(R.id.action_addHabitFragment_to_homeFragment)
+    }
+
+    private fun updateHabitInfo(habit: Habit) {
+        if (isDataValid()) {
+            val title = binding.habitTitleTextView.text.toString()
+            val selectedDays = getSelectedDays()
+            val selectedDaysId = selectedDays.map { selectedDay ->
+                (selectedDay.parent as LinearLayout).tag.toString()
+            }
+            val reminder = binding.reminderTextView.text.toString()
+            val isNotificationOn = binding.notificationSwitch.isChecked
+            habit.title = title
+            habit.days = selectedDaysId
+            habit.color = selectedColor
+            habit.reminderTime = reminder
+            habit.isNotificationOn = isNotificationOn
+        }
+    }
+
+    private fun setupHabitDetail(habit: Habit) {
+        binding.habitTitleTextView.setText(habit.title)
+        setupHabitDays(habit)
+        setupHabitColor(habit)
+        binding.reminderTextView.text = habit.reminderTime
+        binding.notificationSwitch.isChecked = habit.isNotificationOn
+    }
+
+    private fun setupHabitDays(habit: Habit) {
+        val dayCardViews = getDayCardViews()
+        for (day in dayCardViews) {
+            val tag = (day.parent as LinearLayout).tag.toString()
+            if (habit.days.contains(tag)) {
+                selectDay(day)
+            }
+        }
+    }
+
+    private fun setupHabitColor(habit: Habit) {
+        val colorCardViews = getColorCardViews()
+        for (color in colorCardViews) {
+            if (color.cardBackgroundColor.defaultColor == habit.color) {
+                selectColor(color, colorCardViews.filter { cardView -> cardView != color })
+            }
+        }
+    }
+
+    private fun getColorCardViews(): ArrayList<MaterialCardView> {
+        return arrayListOf(
+            binding.firstColorCardView,
+            binding.secondColorCardView,
+            binding.thirdColorCardView,
+            binding.fourthColorCardView,
+            binding.fifthColorCardView,
+            binding.sixthColorCardView,
+            binding.seventhColorCardView
+        )
     }
 
     private fun saveHabit() {
@@ -263,7 +346,14 @@ class AddHabitFragment : Fragment() {
     }
 
     private fun getSelectedDays(): List<CardView> {
-        val days = arrayOf(
+        val days = getDayCardViews()
+        return days.filter { day ->
+            day.tag.equals(Constants.SELECTED)
+        }
+    }
+
+    private fun getDayCardViews(): ArrayList<CardView> {
+        return arrayListOf(
             binding.sundayCardView,
             binding.mondayCardView,
             binding.tuesdayCardView,
@@ -272,9 +362,6 @@ class AddHabitFragment : Fragment() {
             binding.fridayCardView,
             binding.saturdayCardView
         )
-        return days.filter { day ->
-            day.tag.equals(Constants.SELECTED)
-        }
     }
 
     private fun isTitleEmpty(): Boolean {
@@ -284,9 +371,9 @@ class AddHabitFragment : Fragment() {
 
     private fun changeFabIconAnimation(icon: Int) {
         val fadeOutAnime =
-            AnimationUtils.loadAnimation(requireContext(), androidx.transition.R.anim.abc_fade_out)
+            AnimationUtils.loadAnimation(requireContext(), R.anim.fade_out)
         val fadeInAnime =
-            AnimationUtils.loadAnimation(requireContext(), androidx.transition.R.anim.abc_fade_in)
+            AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
         fab.startAnimation(fadeOutAnime)
         fadeOutAnime.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationStart(p0: Animation?) {}

@@ -15,4 +15,7 @@ interface DatabaseDao {
 
     @Update
     suspend fun update(habit: Habit)
+
+    @Delete
+    suspend fun delete(habit: Habit)
 }

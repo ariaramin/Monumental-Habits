@@ -120,6 +120,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
+                android:layoutAnimation="@anim/item_animation"
                 android:nestedScrollingEnabled="true"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

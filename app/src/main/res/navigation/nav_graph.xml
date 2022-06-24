@@ -106,5 +106,12 @@
             app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/habitFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_habitFragment_to_addHabitFragment"
+            app:destination="@id/addHabitFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
 </navigation>

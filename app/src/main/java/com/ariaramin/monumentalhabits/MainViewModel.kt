@@ -42,4 +42,10 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    fun deleteHabit(habit: Habit) {
+        viewModelScope.launch {
+            mainRepository.deleteHabit(habit)
+        }
+    }
+
 }

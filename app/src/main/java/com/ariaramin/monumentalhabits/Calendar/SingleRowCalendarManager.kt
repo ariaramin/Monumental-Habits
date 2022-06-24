@@ -35,7 +35,7 @@ class SingleRowCalendarManager {
                     }
                 } else {
                     if (habit != null) {
-                        if (habit.markedAsCompletedDates.contains(convertToString(date))) {
+                        if (habit.markedAsCompletedDates.contains(convertDateToString(date))) {
                             R.layout.habit_contribution_square_selected
                         } else {
                             R.layout.habit_contribution_square_deselected
@@ -60,7 +60,7 @@ class SingleRowCalendarManager {
                     dateTextView.text = DateUtils.getDayNumber(date)
                 } else {
                     habit?.let { habit ->
-                        if (habit.markedAsCompletedDates.contains(convertToString(date))) {
+                        if (habit.markedAsCompletedDates.contains(convertDateToString(date))) {
                             val cardView =
                                 holder.itemView.findViewById<CardView>(R.id.habitContributionCardView)
                             cardView.setCardBackgroundColor(habit.color)
@@ -71,8 +71,8 @@ class SingleRowCalendarManager {
         }
     }
 
-    private fun convertToString(date: Date): String {
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy")
+    private fun convertDateToString(date: Date): String {
+        val dateFormat = SimpleDateFormat(Constants.DATE_FORMAT)
         return dateFormat.format(date)
     }
 
