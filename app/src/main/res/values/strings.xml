@@ -33,7 +33,7 @@
     <string name="longest_streak">Longest Streak</string>
     <string name="current_streak">Current Streak</string>
     <string name="completion_rate">Completion Rate</string>
-    <string name="average_easiness_score">Average Easiness</string>
+    <string name="habit_finished_count">Habit Finished</string>
     <string name="mark_habit_as_complete">Mark Habit as Complete</string>
     <string name="mark_habit_as_missed">Mark Habit as Missed</string>
     <string name="not_include_today">This habit doesn\'t include today</string>

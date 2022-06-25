@@ -1,5 +1,6 @@
 package com.ariaramin.monumentalhabits.ui.fragments
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.ariaramin.monumentalhabits.Calendar.DayViewContainer
 import com.ariaramin.monumentalhabits.Calendar.MonthViewContainer
+import com.ariaramin.monumentalhabits.MainActivity
 import com.ariaramin.monumentalhabits.MainViewModel
 import com.ariaramin.monumentalhabits.Models.Habit
 import com.ariaramin.monumentalhabits.R
@@ -31,6 +33,7 @@ import java.time.format.DateTimeFormatter
 import java.time.temporal.WeekFields
 import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.collections.ArrayList
 import kotlin.math.max
 
 @AndroidEntryPoint
@@ -38,6 +41,12 @@ class HabitFragment : Fragment() {
 
     private lateinit var binding: FragmentHabitBinding
     private val mainViewModel by viewModels<MainViewModel>()
+    private lateinit var mainActivity: MainActivity
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mainActivity = context as MainActivity
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +54,10 @@ class HabitFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentHabitBinding.inflate(inflater, container, false)
+        mainActivity.fab.setOnClickListener { view ->
+            Navigation.findNavController(view)
+                .navigate(R.id.action_habitFragment_to_addHabitFragment)
+        }
         binding.backstackButton.setOnClickListener {
             requireActivity().onBackPressed()
         }
@@ -188,31 +201,43 @@ class HabitFragment : Fragment() {
         binding.longestStreakTextView.text = "${getLongestStreak(habit)} Days"
         binding.currentStreakTextView.text = "${getCurrentStreak(habit)} Days"
         binding.completionRateTextView.text = "${getCompletionRate(habit)}%"
+        binding.finishedCountTextView.text = habit.markedAsCompletedDates.size.toString()
     }
 
     private fun getCompletionRate(habit: Habit): Int {
-        val totalDaysCount = getDifferenceDays(habit.createdAt)
+        val totalDatesCount = getDifferenceDates(habit)
         val markedDatesCount = habit.markedAsCompletedDates.size
-        return if (totalDaysCount == 0) {
+        return if (totalDatesCount == 0) {
             if (markedDatesCount != 0) markedDatesCount * 100 else 0
-        } else (markedDatesCount / totalDaysCount) * 100
+        } else (markedDatesCount / totalDatesCount) * 100
     }
 
-    private fun getDifferenceDays(date: Long): Int {
-        val today = Date().time
-        val different = today - date
-        return TimeUnit.DAYS.convert(different, TimeUnit.MILLISECONDS).toInt()
+    private fun getDifferenceDates(habit: Habit): Int {
+        val createdAt = SimpleDateFormat(Constants.DATE_FORMAT).format(Date(habit.createdAt))
+        val today = LocalDate.parse(getToday())
+        var start = LocalDate.parse(createdAt)
+        val dates = ArrayList<LocalDate>()
+        while (!start.isAfter(today)) {
+            dates.add(start)
+            start = start.plusDays(1)
+        }
+        val selectedDays = dates.filter { date ->
+            val dayOfTheWeek = date.dayOfWeek.toString().subSequence(0, 3)
+            habit.days.contains(dayOfTheWeek.toString().uppercase())
+        }
+        return selectedDays.size
     }
 
     private fun getCurrentStreak(habit: Habit): Int {
         var count = 0
         var currentStreak = 0
         val dates = habit.markedAsCompletedDates
-        dates.map { date -> date.replace("/", "").toLong() }
+        dates.map { date -> date.replace("-", "").toLong() }
         for (i in dates.indices) {
             if (i > 0) {
-                if (dates[i] == (dates[i - 1] + 1)) count++ else count = 1
-            } else count = 1
+                val diff = getDifferenceDays(dates[i - 1].toLong(), dates[i].toLong())
+                if (dates[i] == (dates[i - 1] + diff)) count++ else count = 0
+            } else count = 0
             currentStreak = count
         }
         return currentStreak
@@ -222,14 +247,20 @@ class HabitFragment : Fragment() {
         var count = 0
         var longestStreak = 0
         val dates = habit.markedAsCompletedDates
-        dates.map { date -> date.replace("/", "").toLong() }
+        dates.map { date -> date.replace("-", "").toLong() }
         for (i in dates.indices) {
             if (i > 0) {
-                if (dates[i] == (dates[i - 1] + 1)) count++ else count = 1
-            } else count = 1
+                val diff = getDifferenceDays(dates[i - 1].toLong(), dates[i].toLong())
+                if (dates[i] == (dates[i - 1] + diff)) count++ else count = 0
+            } else count = 0
             longestStreak = max(longestStreak, count)
         }
         return longestStreak
+    }
+
+    private fun getDifferenceDays(date1: Long, date2: Long): Long {
+        val diff = date2 - date1
+        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS)
     }
 
     private fun getRepeatDays(days: List<String>): String {

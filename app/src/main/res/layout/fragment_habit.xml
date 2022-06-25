@@ -110,7 +110,9 @@
                             style="@style/TitleTextAppearance"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textAlignment="textStart"
+                            android:gravity="center|start"
+                            android:minHeight="20dp"
+                            android:textAlignment="viewStart"
                             android:textSize="18sp"
                             tools:text="TextView" />
 
@@ -437,7 +439,7 @@
                                 tools:ignore="NestedWeights">
 
                                 <TextView
-                                    android:id="@+id/averageEasinessTextView"
+                                    android:id="@+id/finishedCountTextView"
                                     style="@style/TitleTextAppearance"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -450,7 +452,7 @@
                                     style="@style/DescriptionTextAppearance"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/average_easiness_score"
+                                    android:text="@string/habit_finished_count"
                                     android:textAlignment="textStart"
                                     android:textAllCaps="false"
                                     android:textColor="@color/onPrimaryLight"

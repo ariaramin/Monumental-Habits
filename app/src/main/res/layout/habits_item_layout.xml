@@ -26,9 +26,10 @@
             android:id="@+id/habitTitleTextView"
             style="@style/TitleTextAppearance"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="12dp"
             android:layout_weight="1"
+            android:gravity="start|center"
             android:textAlignment="textStart"
             android:textSize="14sp"
             tools:text="@string/habits" />

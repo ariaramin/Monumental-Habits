@@ -1,5 +1,6 @@
 package com.ariaramin.monumentalhabits.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
@@ -15,6 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.ariaramin.monumentalhabits.MainActivity
 import com.ariaramin.monumentalhabits.MainViewModel
 import com.ariaramin.monumentalhabits.Models.Habit
 import com.ariaramin.monumentalhabits.R
@@ -32,8 +34,14 @@ class AddHabitFragment : Fragment() {
 
     private lateinit var binding: FragmentAddHabitBinding
     private val mainViewModel by viewModels<MainViewModel>()
+    private lateinit var mainActivity: MainActivity
     private lateinit var fab: FloatingActionButton
     private var selectedColor: Int = 0
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mainActivity = context as MainActivity
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +49,7 @@ class AddHabitFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentAddHabitBinding.inflate(inflater, container, false)
-        fab = requireActivity().findViewById(R.id.fab)
+        fab = mainActivity.fab
         changeFabIconAnimation(R.drawable.ic_check)
         fab.isEnabled = isDataValid()
         selectedColor = binding.firstColorCardView.cardBackgroundColor.defaultColor
