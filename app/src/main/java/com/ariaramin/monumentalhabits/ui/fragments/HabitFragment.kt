@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.ariaramin.monumentalhabits.Calendar.DayViewContainer
 import com.ariaramin.monumentalhabits.Calendar.MonthViewContainer
 import com.ariaramin.monumentalhabits.MainActivity
@@ -30,9 +31,9 @@ import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 import java.time.temporal.WeekFields
 import java.util.*
-import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 import kotlin.math.max
 
@@ -54,9 +55,8 @@ class HabitFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentHabitBinding.inflate(inflater, container, false)
-        mainActivity.fab.setOnClickListener { view ->
-            Navigation.findNavController(view)
-                .navigate(R.id.action_habitFragment_to_addHabitFragment)
+        mainActivity.fab.setOnClickListener {
+            findNavController().navigate(R.id.action_habitFragment_to_addHabitFragment)
         }
         binding.backstackButton.setOnClickListener {
             requireActivity().onBackPressed()
@@ -197,7 +197,7 @@ class HabitFragment : Fragment() {
     private fun setupHabitDetails(habit: Habit) {
         binding.habitTitleTextView.text = habit.title
         binding.repeatDaysTextView.text = getRepeatDays(habit.days)
-        binding.reminderTextView.text = habit.reminderTime
+        binding.reminderTextView.text = "Reminder: ${habit.reminderTime}"
         binding.longestStreakTextView.text = "${getLongestStreak(habit)} Days"
         binding.currentStreakTextView.text = "${getCurrentStreak(habit)} Days"
         binding.completionRateTextView.text = "${getCompletionRate(habit)}%"
@@ -209,7 +209,7 @@ class HabitFragment : Fragment() {
         val markedDatesCount = habit.markedAsCompletedDates.size
         return if (totalDatesCount == 0) {
             if (markedDatesCount != 0) markedDatesCount * 100 else 0
-        } else (markedDatesCount / totalDatesCount) * 100
+        } else ((markedDatesCount.toDouble() / totalDatesCount) * 100).toInt()
     }
 
     private fun getDifferenceDates(habit: Habit): Int {
@@ -232,35 +232,59 @@ class HabitFragment : Fragment() {
         var count = 0
         var currentStreak = 0
         val dates = habit.markedAsCompletedDates
-        dates.map { date -> date.replace("-", "").toLong() }
-        for (i in dates.indices) {
+        val diff = getDifferenceDays(habit.days)
+        val time = dates.map { date -> date.replace("-", "").toLong() }
+        for (i in time.indices) {
             if (i > 0) {
-                val diff = getDifferenceDays(dates[i - 1].toLong(), dates[i].toLong())
-                if (dates[i] == (dates[i - 1] + diff)) count++ else count = 0
+                val prevTime = convertStringToLocalDate(dates[i - 1])
+                val currentTime = convertStringToLocalDate(dates[i])
+                if (currentTime!! <= (prevTime!!.plusDays(diff.toLong()))) count++ else count = 0
             } else count = 0
             currentStreak = count
         }
-        return currentStreak
+        return if (currentStreak > 0) currentStreak + 1 else currentStreak
     }
 
     private fun getLongestStreak(habit: Habit): Int {
         var count = 0
         var longestStreak = 0
         val dates = habit.markedAsCompletedDates
-        dates.map { date -> date.replace("-", "").toLong() }
-        for (i in dates.indices) {
+        val diff = getDifferenceDays(habit.days)
+        val time = dates.map { date -> date.replace("-", "").toLong() }
+        for (i in time.indices) {
             if (i > 0) {
-                val diff = getDifferenceDays(dates[i - 1].toLong(), dates[i].toLong())
-                if (dates[i] == (dates[i - 1] + diff)) count++ else count = 0
+                val prevTime = convertStringToLocalDate(dates[i - 1])
+                val currentTime = convertStringToLocalDate(dates[i])
+                if (currentTime!! <= (prevTime!!.plusDays(diff.toLong()))) count++ else count = 0
             } else count = 0
             longestStreak = max(longestStreak, count)
         }
-        return longestStreak
+        return if (longestStreak > 0) longestStreak + 1 else longestStreak
     }
 
-    private fun getDifferenceDays(date1: Long, date2: Long): Long {
-        val diff = date2 - date1
-        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS)
+    private fun convertStringToLocalDate(string: String): LocalDate? {
+        return LocalDate.parse(string)
+    }
+
+    private fun getDifferenceDays(days: List<String>): Int {
+        val dayByNumber = days.map { day ->
+            when (day) {
+                getString(R.string.sunday) -> 1
+                getString(R.string.monday) -> 2
+                getString(R.string.tuesday) -> 3
+                getString(R.string.wednesday) -> 4
+                getString(R.string.thursday) -> 5
+                getString(R.string.friday) -> 6
+                else -> 7
+            }
+        }
+        var diff = 1
+        for (i in dayByNumber.indices) {
+            if (i > 0) {
+                diff = dayByNumber[i] - dayByNumber[i - 1]
+            }
+        }
+        return diff
     }
 
     private fun getRepeatDays(days: List<String>): String {

@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
-import com.ariaramin.monumentalhabits.PreferencesManager.SharedPreferencesManager
+import com.ariaramin.monumentalhabits.SharedPreferences.SharedPreferencesManager
 import com.ariaramin.monumentalhabits.R
 import com.ariaramin.monumentalhabits.databinding.FragmentViewPagerBinding
 import com.ariaramin.monumentalhabits.ui.fragments.onboarding.screen.FirstScreenFragment

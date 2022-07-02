@@ -12,6 +12,8 @@ object Constants {
     const val CONTRIBUTION_TAG = 1
     const val HABIT = "habit"
     const val DATE_FORMAT = "yyyy-MM-dd"
-//    const val EDIT = "edit"
-//    const val ADD = "add"
+    const val NOTIFICATION_ID = 1001
+    const val CHANNEL_ID = "channel_1"
+    const val AM = "AM"
+    const val PM = "PM"
 }

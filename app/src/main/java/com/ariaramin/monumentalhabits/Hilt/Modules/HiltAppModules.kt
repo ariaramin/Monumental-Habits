@@ -3,7 +3,8 @@ package com.ariaramin.monumentalhabits.Hilt.Modules
 import android.content.Context
 import com.ariaramin.monumentalhabits.Calendar.SingleRowCalendarManager
 import com.ariaramin.monumentalhabits.MainRepository
-import com.ariaramin.monumentalhabits.PreferencesManager.SharedPreferencesManager
+import com.ariaramin.monumentalhabits.Notification.NotificationServiceManager
+import com.ariaramin.monumentalhabits.SharedPreferences.SharedPreferencesManager
 import com.ariaramin.monumentalhabits.Room.AppDatabase
 import com.ariaramin.monumentalhabits.Room.DatabaseDao
 import dagger.Module
@@ -45,5 +46,11 @@ class HiltAppModules {
     @Singleton
     fun provideMainRepository(databaseDao: DatabaseDao): MainRepository {
         return MainRepository(databaseDao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideNotificationServiceManager(): NotificationServiceManager {
+        return NotificationServiceManager()
     }
 }

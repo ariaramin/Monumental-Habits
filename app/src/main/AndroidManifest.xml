@@ -4,6 +4,8 @@
     package="com.ariaramin.monumentalhabits">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <application
         android:name=".Hilt.HiltApp"
@@ -26,6 +28,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver
+            android:name=".Receiver.NotificationReceiver"
+            android:enabled="true" />
     </application>
 
 </manifest>

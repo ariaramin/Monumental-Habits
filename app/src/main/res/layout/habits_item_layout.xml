@@ -32,6 +32,7 @@
             android:gravity="start|center"
             android:textAlignment="textStart"
             android:textSize="14sp"
+            app:lineHeight="@null"
             tools:text="@string/habits" />
 
         <View

@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.ariaramin.monumentalhabits.PreferencesManager.SharedPreferencesManager
+import com.ariaramin.monumentalhabits.SharedPreferences.SharedPreferencesManager
 import com.ariaramin.monumentalhabits.R
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.ariaramin.monumentalhabits.databinding.ActivityMainBinding
 import com.google.android.material.bottomappbar.BottomAppBar
@@ -28,7 +27,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun linkBottomNavigationViewToNavHost() {
-        val navHost = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        val navHost =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHost.navController
         setUpBottomNavigationView(navController)
     }

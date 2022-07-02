@@ -19,6 +19,7 @@ import androidx.navigation.fragment.findNavController
 import com.ariaramin.monumentalhabits.MainActivity
 import com.ariaramin.monumentalhabits.MainViewModel
 import com.ariaramin.monumentalhabits.Models.Habit
+import com.ariaramin.monumentalhabits.Notification.NotificationServiceManager
 import com.ariaramin.monumentalhabits.R
 import com.ariaramin.monumentalhabits.Utils.Constants
 import com.ariaramin.monumentalhabits.databinding.FragmentAddHabitBinding
@@ -27,6 +28,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -34,6 +36,8 @@ class AddHabitFragment : Fragment() {
 
     private lateinit var binding: FragmentAddHabitBinding
     private val mainViewModel by viewModels<MainViewModel>()
+    @Inject
+    lateinit var notificationServiceManager: NotificationServiceManager
     private lateinit var mainActivity: MainActivity
     private lateinit var fab: FloatingActionButton
     private var selectedColor: Int = 0
@@ -93,6 +97,9 @@ class AddHabitFragment : Fragment() {
     private fun updateHabit(habit: Habit) {
         updateHabitInfo(habit)
         mainViewModel.updateHabit(habit)
+        if (habit.isNotificationOn) {
+            notificationServiceManager.scheduleNotification(requireContext(), habit)
+        }
         findNavController().navigate(R.id.action_addHabitFragment_to_homeFragment)
     }
 
@@ -156,6 +163,9 @@ class AddHabitFragment : Fragment() {
         val habit = createNewHabit()
         habit?.let {
             mainViewModel.insertHabit(it)
+            if (habit.isNotificationOn) {
+                notificationServiceManager.scheduleNotification(requireContext(), habit)
+            }
             findNavController().navigate(R.id.action_addHabitFragment_to_homeFragment)
         }
     }
@@ -181,21 +191,26 @@ class AddHabitFragment : Fragment() {
     }
 
     private fun showReminderTimePicker() {
-        val picker = MaterialTimePicker.Builder()
+        val reminder = binding.reminderTextView.text
+        val hour = reminder.subSequence(0, reminder.indexOf(":")).toString()
+        val minute = reminder.subSequence(reminder.indexOf(":") + 1, reminder.length - 3).toString()
+        val timePicker = MaterialTimePicker.Builder()
             .setTheme(R.style.TimePicker)
             .setTimeFormat(TimeFormat.CLOCK_12H)
             .setTitleText(getString(R.string.add_reminder))
+            .setHour(hour.toInt())
+            .setMinute(minute.toInt())
             .build()
-        picker.addOnPositiveButtonClickListener {
-            setReminderTimeToTextView(picker)
+        timePicker.addOnPositiveButtonClickListener {
+            setReminderTimeToTextView(timePicker)
         }
-        picker.show(parentFragmentManager, Constants.TIME_PICKER)
+        timePicker.show(parentFragmentManager, Constants.TIME_PICKER)
     }
 
     private fun setReminderTimeToTextView(picker: MaterialTimePicker) {
         val hour = picker.hour
         val minute = if (picker.minute < 10) "0${picker.minute}" else picker.minute
-        val amOrPm = if (picker.hour < 12) "AM" else "PM"
+        val amOrPm = if (picker.hour < 12) Constants.AM else Constants.PM
         val time = "$hour:$minute $amOrPm"
         binding.reminderTextView.text = time
     }

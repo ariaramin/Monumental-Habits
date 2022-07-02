@@ -1,4 +1,4 @@
-package com.ariaramin.monumentalhabits.PreferencesManager
+package com.ariaramin.monumentalhabits.SharedPreferences
 
 import android.content.Context
 import com.ariaramin.monumentalhabits.Utils.Constants

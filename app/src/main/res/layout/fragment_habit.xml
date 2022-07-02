@@ -111,7 +111,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center|start"
-                            android:minHeight="20dp"
+                            android:minHeight="24dp"
                             android:textAlignment="viewStart"
                             android:textSize="18sp"
                             tools:text="TextView" />
@@ -237,6 +237,7 @@
                         app:cv_dayViewResource="@layout/calendar_day_layout"
                         app:cv_monthHeaderResource="@layout/calendar_header_layout"
                         app:cv_orientation="horizontal"
+                        app:cv_hasBoundaries="true"
                         app:cv_scrollMode="paged" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

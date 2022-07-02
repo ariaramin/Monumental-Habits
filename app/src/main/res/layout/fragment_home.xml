@@ -15,7 +15,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingBottom="112dp">
 
             <RelativeLayout
                 android:id="@+id/relativeLayout"
@@ -120,6 +121,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
+                android:paddingBottom="112dp"
                 android:layoutAnimation="@anim/item_animation"
                 android:nestedScrollingEnabled="true"
                 android:orientation="vertical"

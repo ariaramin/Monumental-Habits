@@ -7,589 +7,595 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/frameLayout7"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background"
         tools:context=".ui.fragments.AddHabitFragment">
 
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline15"
-            app:layout_constraintStart_toStartOf="@+id/guideline14"
-            app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="112dp">
 
-            <ImageButton
-                android:id="@+id/backstackButton"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:background="@null"
-                android:src="@drawable/ic_back" />
+                android:layout_marginTop="18dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline15"
+                app:layout_constraintStart_toStartOf="@+id/guideline14"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                style="@style/DescriptionTextAppearance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/new_habit"
-                android:textAllCaps="false"
-                android:textSize="18sp" />
-
-            <ImageButton
-                android:id="@+id/deleteButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:background="@null"
-                android:src="@drawable/ic_trash"
-                android:visibility="gone" />
-        </RelativeLayout>
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.04" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline15"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.96" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
-            style="@style/TextInputEditText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:hint="@string/enter_habit_name"
-            app:layout_constraintEnd_toStartOf="@+id/guideline15"
-            app:layout_constraintStart_toStartOf="@+id/guideline14"
-            app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/habitTitleTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/onPrimary" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/daysCardView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="18dp"
-            app:cardElevation="0dp"
-            app:contentPaddingBottom="10dp"
-            app:contentPaddingLeft="10dp"
-            app:contentPaddingRight="10dp"
-            app:contentPaddingTop="14dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline15"
-            app:layout_constraintStart_toStartOf="@+id/guideline14"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    style="@style/DescriptionTextAppearance"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/habit_frequency"
-                    android:textAlignment="textStart"
-                    android:textAllCaps="false" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@color/backgroundColor" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="7">
-
-                    <LinearLayout
-                        android:id="@+id/sundayLayout"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:tag="@string/sunday">
-
-                        <TextView
-                            style="@style/DescriptionTextAppearance"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/sunday"
-                            android:textColor="@color/onPrimaryLight"
-                            android:textSize="12sp" />
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/sundayCardView"
-                            android:layout_width="42dp"
-                            android:layout_height="42dp"
-                            android:layout_margin="6dp"
-                            android:tag="@string/unselected"
-                            app:cardBackgroundColor="@color/secondaryColorLight"
-                            app:cardCornerRadius="18dp"
-                            app:cardElevation="0dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/mondayLayout"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:tag="@string/monday">
-
-                        <TextView
-                            style="@style/DescriptionTextAppearance"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/monday"
-                            android:textColor="@color/onPrimaryLight"
-                            android:textSize="12sp" />
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/mondayCardView"
-                            android:layout_width="42dp"
-                            android:layout_height="42dp"
-                            android:layout_margin="6dp"
-                            android:tag="@string/unselected"
-                            app:cardBackgroundColor="@color/secondaryColorLight"
-                            app:cardCornerRadius="18dp"
-                            app:cardElevation="0dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/tuesdayLayout"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:tag="@string/tuesday">
-
-                        <TextView
-                            style="@style/DescriptionTextAppearance"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/tuesday"
-                            android:textColor="@color/onPrimaryLight"
-                            android:textSize="12sp" />
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/tuesdayCardView"
-                            android:layout_width="42dp"
-                            android:layout_height="42dp"
-                            android:layout_margin="6dp"
-                            android:tag="@string/unselected"
-                            app:cardBackgroundColor="@color/secondaryColorLight"
-                            app:cardCornerRadius="18dp"
-                            app:cardElevation="0dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/wednesdayLayout"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:tag="@string/wednesday">
-
-                        <TextView
-                            style="@style/DescriptionTextAppearance"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/wednesday"
-                            android:textColor="@color/onPrimaryLight"
-                            android:textSize="12sp" />
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/wednesdayCardView"
-                            android:layout_width="42dp"
-                            android:layout_height="42dp"
-                            android:layout_margin="6dp"
-                            android:tag="@string/unselected"
-                            app:cardBackgroundColor="@color/secondaryColorLight"
-                            app:cardCornerRadius="18dp"
-                            app:cardElevation="0dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/thursdayLayout"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:tag="@string/thursday">
-
-                        <TextView
-                            style="@style/DescriptionTextAppearance"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/thursday"
-                            android:textColor="@color/onPrimaryLight"
-                            android:textSize="12sp" />
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/thursdayCardView"
-                            android:layout_width="42dp"
-                            android:layout_height="42dp"
-                            android:layout_margin="6dp"
-                            android:tag="@string/unselected"
-                            app:cardBackgroundColor="@color/secondaryColorLight"
-                            app:cardCornerRadius="18dp"
-                            app:cardElevation="0dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/fridayLayout"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:tag="@string/friday">
-
-                        <TextView
-                            style="@style/DescriptionTextAppearance"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/friday"
-                            android:textColor="@color/onPrimaryLight"
-                            android:textSize="12sp" />
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/fridayCardView"
-                            android:layout_width="42dp"
-                            android:layout_height="42dp"
-                            android:layout_margin="6dp"
-                            android:tag="@string/unselected"
-                            app:cardBackgroundColor="@color/secondaryColorLight"
-                            app:cardCornerRadius="18dp"
-                            app:cardElevation="0dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/saturdayLayout"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:tag="@string/saturday">
-
-                        <TextView
-                            style="@style/DescriptionTextAppearance"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/saturday"
-                            android:textColor="@color/onPrimaryLight"
-                            android:textSize="12sp" />
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/saturdayCardView"
-                            android:layout_width="42dp"
-                            android:layout_height="42dp"
-                            android:layout_margin="6dp"
-                            android:tag="@string/unselected"
-                            app:cardBackgroundColor="@color/secondaryColorLight"
-                            app:cardCornerRadius="18dp"
-                            app:cardElevation="0dp" />
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/colorCardView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="18dp"
-            app:cardElevation="0dp"
-            app:contentPaddingBottom="10dp"
-            app:contentPaddingLeft="10dp"
-            app:contentPaddingRight="10dp"
-            app:contentPaddingTop="14dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline15"
-            app:layout_constraintStart_toStartOf="@+id/guideline14"
-            app:layout_constraintTop_toBottomOf="@+id/daysCardView">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    style="@style/DescriptionTextAppearance"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/contribution_color"
-                    android:textAlignment="textStart"
-                    android:textAllCaps="false" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@color/backgroundColor" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="7">
-
-                    <LinearLayout
-                        android:id="@+id/firstColorLayout"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/firstColorCardView"
-                            android:layout_width="42dp"
-                            android:layout_height="42dp"
-                            android:layout_margin="6dp"
-                            android:tag="@string/selected"
-                            app:cardBackgroundColor="@color/primaryColor"
-                            app:cardCornerRadius="18dp"
-                            app:cardElevation="0dp"
-                            app:strokeColor="@color/black"
-                            app:strokeWidth="3dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/secondColorLayout"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/secondColorCardView"
-                            android:layout_width="42dp"
-                            android:layout_height="42dp"
-                            android:layout_margin="6dp"
-                            android:tag="@string/unselected"
-                            app:cardBackgroundColor="@color/orange"
-                            app:cardCornerRadius="18dp"
-                            app:cardElevation="0dp"
-                            app:strokeColor="@color/black" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/thirdColorLayout"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/thirdColorCardView"
-                            android:layout_width="42dp"
-                            android:layout_height="42dp"
-                            android:layout_margin="6dp"
-                            android:tag="@string/unselected"
-                            app:cardBackgroundColor="@color/red"
-                            app:cardCornerRadius="18dp"
-                            app:cardElevation="0dp"
-                            app:strokeColor="@color/black" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/fourthColorLayout"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/fourthColorCardView"
-                            android:layout_width="42dp"
-                            android:layout_height="42dp"
-                            android:layout_margin="6dp"
-                            android:tag="@string/unselected"
-                            app:cardBackgroundColor="@color/pink"
-                            app:cardCornerRadius="18dp"
-                            app:cardElevation="0dp"
-                            app:strokeColor="@color/black" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/fifthColorLayout"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/fifthColorCardView"
-                            android:layout_width="42dp"
-                            android:layout_height="42dp"
-                            android:layout_margin="6dp"
-                            android:tag="@string/unselected"
-                            app:cardBackgroundColor="@color/purple"
-                            app:cardCornerRadius="18dp"
-                            app:cardElevation="0dp"
-                            app:strokeColor="@color/black" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/sixthColorLayout"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/sixthColorCardView"
-                            android:layout_width="42dp"
-                            android:layout_height="42dp"
-                            android:layout_margin="6dp"
-                            android:tag="@string/unselected"
-                            app:cardBackgroundColor="@color/blue"
-                            app:cardCornerRadius="18dp"
-                            app:cardElevation="0dp"
-                            app:strokeColor="@color/black" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/seventhColorLayout"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/seventhColorCardView"
-                            android:layout_width="42dp"
-                            android:layout_height="42dp"
-                            android:layout_margin="6dp"
-                            android:tag="@string/unselected"
-                            app:cardBackgroundColor="@color/green"
-                            app:cardCornerRadius="18dp"
-                            app:cardElevation="0dp"
-                            app:strokeColor="@color/black" />
-                    </LinearLayout>
-
-                </LinearLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/reminderCardView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="18dp"
-            app:cardElevation="0dp"
-            app:contentPadding="18dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline15"
-            app:layout_constraintStart_toStartOf="@+id/guideline14"
-            app:layout_constraintTop_toBottomOf="@+id/colorCardView">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/DescriptionTextAppearance"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/reminder"
-                    android:textAlignment="textStart"
-                    android:textAllCaps="false" />
-
-                <TextView
-                    android:id="@+id/reminderTextView"
-                    style="@style/DescriptionTextAppearance"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
-                    android:text="10:00 AM"
-                    android:textAlignment="textEnd"
-                    android:textAllCaps="false"
-                    android:textColor="@color/primaryColor" />
-
-                <ImageView
+                <ImageButton
+                    android:id="@+id/backstackButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    app:srcCompat="@drawable/ic_arrow_right" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:src="@drawable/ic_back" />
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="18dp"
-            app:cardElevation="0dp"
-            app:contentPadding="14dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline15"
-            app:layout_constraintStart_toStartOf="@+id/guideline14"
-            app:layout_constraintTop_toBottomOf="@+id/reminderCardView">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/notificationSwitch"
+                <TextView
                     style="@style/DescriptionTextAppearance"
-                    android:layout_width="match_parent"
-                    android:layout_height="28dp"
-                    android:checked="false"
-                    android:text="@string/notification"
-                    android:textAlignment="textStart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/new_habit"
                     android:textAllCaps="false"
-                    android:thumb="@drawable/custom_thumb"
-                    app:track="@drawable/custom_track"
-                    app:useMaterialThemeColors="false" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                    android:textSize="18sp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageButton
+                    android:id="@+id/deleteButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:src="@drawable/ic_trash"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.04" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.96" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
+                style="@style/TextInputEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:hint="@string/enter_habit_name"
+                app:layout_constraintEnd_toStartOf="@+id/guideline15"
+                app:layout_constraintStart_toStartOf="@+id/guideline14"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/habitTitleTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/onPrimary" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/daysCardView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:contentPaddingBottom="10dp"
+                app:contentPaddingLeft="10dp"
+                app:contentPaddingRight="10dp"
+                app:contentPaddingTop="14dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline15"
+                app:layout_constraintStart_toStartOf="@+id/guideline14"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/DescriptionTextAppearance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/habit_frequency"
+                        android:textAlignment="textStart"
+                        android:textAllCaps="false" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@color/backgroundColor" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="7">
+
+                        <LinearLayout
+                            android:id="@+id/sundayLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:tag="@string/sunday">
+
+                            <TextView
+                                style="@style/DescriptionTextAppearance"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/sunday"
+                                android:textColor="@color/onPrimaryLight"
+                                android:textSize="12sp" />
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/sundayCardView"
+                                android:layout_width="42dp"
+                                android:layout_height="42dp"
+                                android:layout_margin="6dp"
+                                android:tag="@string/unselected"
+                                app:cardBackgroundColor="@color/secondaryColorLight"
+                                app:cardCornerRadius="18dp"
+                                app:cardElevation="0dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/mondayLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:tag="@string/monday">
+
+                            <TextView
+                                style="@style/DescriptionTextAppearance"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/monday"
+                                android:textColor="@color/onPrimaryLight"
+                                android:textSize="12sp" />
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/mondayCardView"
+                                android:layout_width="42dp"
+                                android:layout_height="42dp"
+                                android:layout_margin="6dp"
+                                android:tag="@string/unselected"
+                                app:cardBackgroundColor="@color/secondaryColorLight"
+                                app:cardCornerRadius="18dp"
+                                app:cardElevation="0dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tuesdayLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:tag="@string/tuesday">
+
+                            <TextView
+                                style="@style/DescriptionTextAppearance"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/tuesday"
+                                android:textColor="@color/onPrimaryLight"
+                                android:textSize="12sp" />
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/tuesdayCardView"
+                                android:layout_width="42dp"
+                                android:layout_height="42dp"
+                                android:layout_margin="6dp"
+                                android:tag="@string/unselected"
+                                app:cardBackgroundColor="@color/secondaryColorLight"
+                                app:cardCornerRadius="18dp"
+                                app:cardElevation="0dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/wednesdayLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:tag="@string/wednesday">
+
+                            <TextView
+                                style="@style/DescriptionTextAppearance"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/wednesday"
+                                android:textColor="@color/onPrimaryLight"
+                                android:textSize="12sp" />
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/wednesdayCardView"
+                                android:layout_width="42dp"
+                                android:layout_height="42dp"
+                                android:layout_margin="6dp"
+                                android:tag="@string/unselected"
+                                app:cardBackgroundColor="@color/secondaryColorLight"
+                                app:cardCornerRadius="18dp"
+                                app:cardElevation="0dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/thursdayLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:tag="@string/thursday">
+
+                            <TextView
+                                style="@style/DescriptionTextAppearance"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/thursday"
+                                android:textColor="@color/onPrimaryLight"
+                                android:textSize="12sp" />
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/thursdayCardView"
+                                android:layout_width="42dp"
+                                android:layout_height="42dp"
+                                android:layout_margin="6dp"
+                                android:tag="@string/unselected"
+                                app:cardBackgroundColor="@color/secondaryColorLight"
+                                app:cardCornerRadius="18dp"
+                                app:cardElevation="0dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/fridayLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:tag="@string/friday">
+
+                            <TextView
+                                style="@style/DescriptionTextAppearance"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/friday"
+                                android:textColor="@color/onPrimaryLight"
+                                android:textSize="12sp" />
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/fridayCardView"
+                                android:layout_width="42dp"
+                                android:layout_height="42dp"
+                                android:layout_margin="6dp"
+                                android:tag="@string/unselected"
+                                app:cardBackgroundColor="@color/secondaryColorLight"
+                                app:cardCornerRadius="18dp"
+                                app:cardElevation="0dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/saturdayLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:tag="@string/saturday">
+
+                            <TextView
+                                style="@style/DescriptionTextAppearance"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/saturday"
+                                android:textColor="@color/onPrimaryLight"
+                                android:textSize="12sp" />
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/saturdayCardView"
+                                android:layout_width="42dp"
+                                android:layout_height="42dp"
+                                android:layout_margin="6dp"
+                                android:tag="@string/unselected"
+                                app:cardBackgroundColor="@color/secondaryColorLight"
+                                app:cardCornerRadius="18dp"
+                                app:cardElevation="0dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/colorCardView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:contentPaddingBottom="10dp"
+                app:contentPaddingLeft="10dp"
+                app:contentPaddingRight="10dp"
+                app:contentPaddingTop="14dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline15"
+                app:layout_constraintStart_toStartOf="@+id/guideline14"
+                app:layout_constraintTop_toBottomOf="@+id/daysCardView">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/DescriptionTextAppearance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contribution_color"
+                        android:textAlignment="textStart"
+                        android:textAllCaps="false" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@color/backgroundColor" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="7">
+
+                        <LinearLayout
+                            android:id="@+id/firstColorLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/firstColorCardView"
+                                android:layout_width="42dp"
+                                android:layout_height="42dp"
+                                android:layout_margin="6dp"
+                                android:tag="@string/selected"
+                                app:cardBackgroundColor="@color/primaryColor"
+                                app:cardCornerRadius="18dp"
+                                app:cardElevation="0dp"
+                                app:strokeColor="@color/black"
+                                app:strokeWidth="3dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/secondColorLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/secondColorCardView"
+                                android:layout_width="42dp"
+                                android:layout_height="42dp"
+                                android:layout_margin="6dp"
+                                android:tag="@string/unselected"
+                                app:cardBackgroundColor="@color/orange"
+                                app:cardCornerRadius="18dp"
+                                app:cardElevation="0dp"
+                                app:strokeColor="@color/black" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/thirdColorLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/thirdColorCardView"
+                                android:layout_width="42dp"
+                                android:layout_height="42dp"
+                                android:layout_margin="6dp"
+                                android:tag="@string/unselected"
+                                app:cardBackgroundColor="@color/red"
+                                app:cardCornerRadius="18dp"
+                                app:cardElevation="0dp"
+                                app:strokeColor="@color/black" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/fourthColorLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/fourthColorCardView"
+                                android:layout_width="42dp"
+                                android:layout_height="42dp"
+                                android:layout_margin="6dp"
+                                android:tag="@string/unselected"
+                                app:cardBackgroundColor="@color/pink"
+                                app:cardCornerRadius="18dp"
+                                app:cardElevation="0dp"
+                                app:strokeColor="@color/black" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/fifthColorLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/fifthColorCardView"
+                                android:layout_width="42dp"
+                                android:layout_height="42dp"
+                                android:layout_margin="6dp"
+                                android:tag="@string/unselected"
+                                app:cardBackgroundColor="@color/purple"
+                                app:cardCornerRadius="18dp"
+                                app:cardElevation="0dp"
+                                app:strokeColor="@color/black" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/sixthColorLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/sixthColorCardView"
+                                android:layout_width="42dp"
+                                android:layout_height="42dp"
+                                android:layout_margin="6dp"
+                                android:tag="@string/unselected"
+                                app:cardBackgroundColor="@color/blue"
+                                app:cardCornerRadius="18dp"
+                                app:cardElevation="0dp"
+                                app:strokeColor="@color/black" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/seventhColorLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/seventhColorCardView"
+                                android:layout_width="42dp"
+                                android:layout_height="42dp"
+                                android:layout_margin="6dp"
+                                android:tag="@string/unselected"
+                                app:cardBackgroundColor="@color/green"
+                                app:cardCornerRadius="18dp"
+                                app:cardElevation="0dp"
+                                app:strokeColor="@color/black" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/reminderCardView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:contentPadding="18dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline15"
+                app:layout_constraintStart_toStartOf="@+id/guideline14"
+                app:layout_constraintTop_toBottomOf="@+id/colorCardView">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/DescriptionTextAppearance"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/reminder"
+                        android:textAlignment="textStart"
+                        android:textAllCaps="false" />
+
+                    <TextView
+                        android:id="@+id/reminderTextView"
+                        style="@style/DescriptionTextAppearance"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:text="10:00 AM"
+                        android:textAlignment="textEnd"
+                        android:textAllCaps="false"
+                        android:textColor="@color/primaryColor" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/ic_arrow_right" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:contentPadding="14dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline15"
+                app:layout_constraintStart_toStartOf="@+id/guideline14"
+                app:layout_constraintTop_toBottomOf="@+id/reminderCardView">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/notificationSwitch"
+                        style="@style/DescriptionTextAppearance"
+                        android:layout_width="match_parent"
+                        android:layout_height="28dp"
+                        android:checked="true"
+                        android:text="@string/notification"
+                        android:textAlignment="textStart"
+                        android:textAllCaps="false"
+                        android:thumb="@drawable/custom_thumb"
+                        app:track="@drawable/custom_track"
+                        app:useMaterialThemeColors="false" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 </layout>
