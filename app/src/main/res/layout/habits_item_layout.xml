@@ -28,7 +28,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="12dp"
-            android:layout_weight="1"
+            android:layout_weight="1.1"
             android:gravity="start|center"
             android:textAlignment="textStart"
             android:textSize="14sp"
@@ -44,7 +44,7 @@
             android:id="@+id/contributionCalendar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="1.9"
             app:deselection="false"
             app:longPress="false"
             app:multiSelection="false" />

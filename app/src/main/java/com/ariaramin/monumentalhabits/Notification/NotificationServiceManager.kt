@@ -6,6 +6,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import androidx.core.app.NotificationCompat
 import androidx.navigation.NavDeepLinkBuilder
@@ -29,12 +30,29 @@ class NotificationServiceManager {
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        alarmManager.setInexactRepeating(
-            AlarmManager.RTC_WAKEUP,
-            getTime(habit),
-            AlarmManager.INTERVAL_DAY,
-            pendingIntent
-        )
+        val currentApiVersion = Build.VERSION.SDK_INT
+        if (currentApiVersion < Build.VERSION_CODES.KITKAT) {
+            alarmManager.set(
+                AlarmManager.RTC_WAKEUP,
+                getTime(habit),
+                pendingIntent
+            )
+        } else {
+            if (currentApiVersion < Build.VERSION_CODES.M) {
+                alarmManager.setExact(
+                    AlarmManager.RTC_WAKEUP,
+                    getTime(habit),
+                    pendingIntent
+                )
+            } else {
+                alarmManager.setExactAndAllowWhileIdle(
+                    AlarmManager.RTC_WAKEUP,
+                    getTime(habit),
+                    pendingIntent
+                )
+            }
+        }
+
     }
 
     private fun getTime(habit: Habit): Long {
@@ -85,6 +103,7 @@ class NotificationServiceManager {
             NotificationManager.IMPORTANCE_HIGH
         )
         channel.description = channelDescription
+//        channel.setSound()
         val manager = getNotificationManager(context)
         manager.createNotificationChannel(channel)
     }

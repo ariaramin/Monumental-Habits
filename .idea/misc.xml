@@ -36,6 +36,7 @@
         <entry key="app/src/main/res/layout/fragment_add_habit.xml" value="0.22430555555555556" />
         <entry key="app/src/main/res/layout/fragment_comminuty.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/fragment_courses.xml" value="0.33645833333333336" />
+        <entry key="app/src/main/res/layout/fragment_custom_notification.xml" value="0.22256944444444443" />
         <entry key="app/src/main/res/layout/fragment_first_screen.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/fragment_fourth_screen.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/fragment_habit.xml" value="0.22430555555555556" />
@@ -43,6 +44,7 @@
         <entry key="app/src/main/res/layout/fragment_reminder_dialog.xml" value="0.27618640444634457" />
         <entry key="app/src/main/res/layout/fragment_second_screen.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.22430555555555556" />
+        <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.22256944444444443" />
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_third_screen.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/fragment_view_pager.xml" value="0.33645833333333336" />

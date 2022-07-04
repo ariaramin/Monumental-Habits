@@ -61,129 +61,129 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.96" />
 
-            <TextView
-                android:id="@+id/textView3"
-                style="@style/DescriptionTextAppearance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="@string/general_settings"
-                app:layout_constraintStart_toStartOf="@+id/guideline16"
-                app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+<!--            <TextView-->
+<!--                android:id="@+id/textView3"-->
+<!--                style="@style/DescriptionTextAppearance"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="24dp"-->
+<!--                android:text="@string/general_settings"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/guideline16"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />-->
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/customizeNotificationCardView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="18dp"
-                app:cardElevation="0dp"
-                app:contentPadding="12dp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline17"
-                app:layout_constraintStart_toStartOf="@+id/guideline16"
-                app:layout_constraintTop_toBottomOf="@+id/textView3">
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/customizeNotificationCardView"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="18dp"-->
+<!--                app:cardBackgroundColor="@color/white"-->
+<!--                app:cardCornerRadius="18dp"-->
+<!--                app:cardElevation="0dp"-->
+<!--                app:contentPadding="12dp"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/guideline17"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/guideline16"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView3">-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:gravity="center"-->
+<!--                    android:orientation="horizontal">-->
 
-                    <ImageView
-                        android:layout_width="46dp"
-                        android:layout_height="46dp"
-                        android:layout_marginEnd="12dp"
-                        android:src="@drawable/ic_notification_setting" />
+<!--                    <ImageView-->
+<!--                        android:layout_width="46dp"-->
+<!--                        android:layout_height="46dp"-->
+<!--                        android:layout_marginEnd="12dp"-->
+<!--                        android:src="@drawable/ic_notification_setting" />-->
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:orientation="vertical">-->
 
-                        <TextView
-                            style="@style/DescriptionTextAppearance"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/notifications"
-                            android:textAlignment="textStart"
-                            android:textAllCaps="false"
-                            android:textSize="16sp" />
+<!--                        <TextView-->
+<!--                            style="@style/DescriptionTextAppearance"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="@string/notifications"-->
+<!--                            android:textAlignment="textStart"-->
+<!--                            android:textAllCaps="false"-->
+<!--                            android:textSize="16sp" />-->
 
-                        <TextView
-                            style="@style/DescriptionTextAppearance"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/customize_notifications"
-                            android:textAlignment="textStart"
-                            android:textAllCaps="false"
-                            android:textColor="@color/onPrimaryLight" />
-                    </LinearLayout>
+<!--                        <TextView-->
+<!--                            style="@style/DescriptionTextAppearance"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="@string/customize_notifications"-->
+<!--                            android:textAlignment="textStart"-->
+<!--                            android:textAllCaps="false"-->
+<!--                            android:textColor="@color/onPrimaryLight" />-->
+<!--                    </LinearLayout>-->
 
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="18dp"
-                        android:src="@drawable/ic_arrow_right" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+<!--                    <ImageView-->
+<!--                        android:layout_width="12dp"-->
+<!--                        android:layout_height="18dp"-->
+<!--                        android:src="@drawable/ic_arrow_right" />-->
+<!--                </LinearLayout>-->
+<!--            </androidx.cardview.widget.CardView>-->
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/customizeMoreCardView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="18dp"
-                app:cardElevation="0dp"
-                app:contentPadding="12dp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline17"
-                app:layout_constraintStart_toStartOf="@+id/guideline16"
-                app:layout_constraintTop_toBottomOf="@+id/customizeNotificationCardView">
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/customizeMoreCardView"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="12dp"-->
+<!--                app:cardBackgroundColor="@color/white"-->
+<!--                app:cardCornerRadius="18dp"-->
+<!--                app:cardElevation="0dp"-->
+<!--                app:contentPadding="12dp"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/guideline17"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/guideline16"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/customizeNotificationCardView">-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:gravity="center"-->
+<!--                    android:orientation="horizontal">-->
 
-                    <ImageView
-                        android:layout_width="46dp"
-                        android:layout_height="46dp"
-                        android:layout_marginEnd="12dp"
-                        android:src="@drawable/ic_more" />
+<!--                    <ImageView-->
+<!--                        android:layout_width="46dp"-->
+<!--                        android:layout_height="46dp"-->
+<!--                        android:layout_marginEnd="12dp"-->
+<!--                        android:src="@drawable/ic_more" />-->
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:orientation="vertical">-->
 
-                        <TextView
-                            style="@style/DescriptionTextAppearance"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/more_customization"
-                            android:textAlignment="textStart"
-                            android:textAllCaps="false"
-                            android:textSize="16sp" />
+<!--                        <TextView-->
+<!--                            style="@style/DescriptionTextAppearance"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="@string/more_customization"-->
+<!--                            android:textAlignment="textStart"-->
+<!--                            android:textAllCaps="false"-->
+<!--                            android:textSize="16sp" />-->
 
-                        <TextView
-                            style="@style/DescriptionTextAppearance"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/customize_more"
-                            android:textAlignment="textStart"
-                            android:textAllCaps="false"
-                            android:textColor="@color/onPrimaryLight" />
-                    </LinearLayout>
+<!--                        <TextView-->
+<!--                            style="@style/DescriptionTextAppearance"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="@string/customize_more"-->
+<!--                            android:textAlignment="textStart"-->
+<!--                            android:textAllCaps="false"-->
+<!--                            android:textColor="@color/onPrimaryLight" />-->
+<!--                    </LinearLayout>-->
 
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="18dp"
-                        android:src="@drawable/ic_arrow_right" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+<!--                    <ImageView-->
+<!--                        android:layout_width="12dp"-->
+<!--                        android:layout_height="18dp"-->
+<!--                        android:src="@drawable/ic_arrow_right" />-->
+<!--                </LinearLayout>-->
+<!--            </androidx.cardview.widget.CardView>-->
 
             <TextView
                 android:id="@+id/textView8"
@@ -193,7 +193,7 @@
                 android:layout_marginTop="24dp"
                 android:text="@string/support"
                 app:layout_constraintStart_toStartOf="@+id/guideline16"
-                app:layout_constraintTop_toBottomOf="@+id/customizeMoreCardView" />
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/contactCardView"
