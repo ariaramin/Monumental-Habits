@@ -61,139 +61,219 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.96" />
 
-<!--            <TextView-->
-<!--                android:id="@+id/textView3"-->
-<!--                style="@style/DescriptionTextAppearance"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="24dp"-->
-<!--                android:text="@string/general_settings"-->
-<!--                app:layout_constraintStart_toStartOf="@+id/guideline16"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:contentPaddingBottom="10dp"
+                app:contentPaddingLeft="10dp"
+                app:contentPaddingRight="10dp"
+                app:contentPaddingTop="14dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline17"
+                app:layout_constraintStart_toStartOf="@+id/guideline16"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
 
-<!--            <androidx.cardview.widget.CardView-->
-<!--                android:id="@+id/customizeNotificationCardView"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="18dp"-->
-<!--                app:cardBackgroundColor="@color/white"-->
-<!--                app:cardCornerRadius="18dp"-->
-<!--                app:cardElevation="0dp"-->
-<!--                app:contentPadding="12dp"-->
-<!--                app:layout_constraintEnd_toStartOf="@+id/guideline17"-->
-<!--                app:layout_constraintStart_toStartOf="@+id/guideline16"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/textView3">-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:gravity="center"-->
-<!--                    android:orientation="horizontal">-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
 
-<!--                    <ImageView-->
-<!--                        android:layout_width="46dp"-->
-<!--                        android:layout_height="46dp"-->
-<!--                        android:layout_marginEnd="12dp"-->
-<!--                        android:src="@drawable/ic_notification_setting" />-->
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/imageView4"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:src="@drawable/logo"
+                            app:riv_corner_radius="28dp"
+                            app:riv_mutate_background="true" />
 
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="0dp"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:orientation="vertical">-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="8dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-<!--                        <TextView-->
-<!--                            style="@style/DescriptionTextAppearance"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="@string/notifications"-->
-<!--                            android:textAlignment="textStart"-->
-<!--                            android:textAllCaps="false"-->
-<!--                            android:textSize="16sp" />-->
+                            <TextView
+                                style="@style/DescriptionTextAppearance"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="4dp"
+                                android:text="@string/username"
+                                android:textAlignment="textStart"
+                                android:textAllCaps="false"
+                                android:textSize="12sp" />
 
-<!--                        <TextView-->
-<!--                            style="@style/DescriptionTextAppearance"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="@string/customize_notifications"-->
-<!--                            android:textAlignment="textStart"-->
-<!--                            android:textAllCaps="false"-->
-<!--                            android:textColor="@color/onPrimaryLight" />-->
-<!--                    </LinearLayout>-->
+                            <TextView
+                                android:id="@+id/usernameTextView"
+                                style="@style/TitleTextAppearance"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="textStart"
+                                android:textAllCaps="false"
+                                android:lineHeight="0dp"
+                                android:textSize="26sp"
+                                tools:text="Aria Ramin" />
+                        </LinearLayout>
+                    </LinearLayout>
 
-<!--                    <ImageView-->
-<!--                        android:layout_width="12dp"-->
-<!--                        android:layout_height="18dp"-->
-<!--                        android:src="@drawable/ic_arrow_right" />-->
-<!--                </LinearLayout>-->
-<!--            </androidx.cardview.widget.CardView>-->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/backgroundColor" />
 
-<!--            <androidx.cardview.widget.CardView-->
-<!--                android:id="@+id/customizeMoreCardView"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="12dp"-->
-<!--                app:cardBackgroundColor="@color/white"-->
-<!--                app:cardCornerRadius="18dp"-->
-<!--                app:cardElevation="0dp"-->
-<!--                app:contentPadding="12dp"-->
-<!--                app:layout_constraintEnd_toStartOf="@+id/guideline17"-->
-<!--                app:layout_constraintStart_toStartOf="@+id/guideline16"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/customizeNotificationCardView">-->
+                    <com.michalsvec.singlerowcalendar.calendar.SingleRowCalendar
+                        android:id="@+id/habitTrackerCalendar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:deselection="false"
+                        app:longPress="false"
+                        app:multiSelection="false" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <!--            <TextView-->
+            <!--                android:id="@+id/textView3"-->
+            <!--                style="@style/DescriptionTextAppearance"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="24dp"-->
+            <!--                android:text="@string/general_settings"-->
+            <!--                app:layout_constraintStart_toStartOf="@+id/guideline16"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />-->
 
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:gravity="center"-->
-<!--                    android:orientation="horizontal">-->
+            <!--            <androidx.cardview.widget.CardView-->
+            <!--                android:id="@+id/customizeNotificationCardView"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="18dp"-->
+            <!--                app:cardBackgroundColor="@color/white"-->
+            <!--                app:cardCornerRadius="18dp"-->
+            <!--                app:cardElevation="0dp"-->
+            <!--                app:contentPadding="12dp"-->
+            <!--                app:layout_constraintEnd_toStartOf="@+id/guideline17"-->
+            <!--                app:layout_constraintStart_toStartOf="@+id/guideline16"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/textView3">-->
 
-<!--                    <ImageView-->
-<!--                        android:layout_width="46dp"-->
-<!--                        android:layout_height="46dp"-->
-<!--                        android:layout_marginEnd="12dp"-->
-<!--                        android:src="@drawable/ic_more" />-->
+            <!--                <LinearLayout-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:gravity="center"-->
+            <!--                    android:orientation="horizontal">-->
 
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="0dp"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:orientation="vertical">-->
+            <!--                    <ImageView-->
+            <!--                        android:layout_width="46dp"-->
+            <!--                        android:layout_height="46dp"-->
+            <!--                        android:layout_marginEnd="12dp"-->
+            <!--                        android:src="@drawable/ic_notification_setting" />-->
 
-<!--                        <TextView-->
-<!--                            style="@style/DescriptionTextAppearance"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="@string/more_customization"-->
-<!--                            android:textAlignment="textStart"-->
-<!--                            android:textAllCaps="false"-->
-<!--                            android:textSize="16sp" />-->
+            <!--                    <LinearLayout-->
+            <!--                        android:layout_width="0dp"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_weight="1"-->
+            <!--                        android:orientation="vertical">-->
 
-<!--                        <TextView-->
-<!--                            style="@style/DescriptionTextAppearance"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="@string/customize_more"-->
-<!--                            android:textAlignment="textStart"-->
-<!--                            android:textAllCaps="false"-->
-<!--                            android:textColor="@color/onPrimaryLight" />-->
-<!--                    </LinearLayout>-->
+            <!--                        <TextView-->
+            <!--                            style="@style/DescriptionTextAppearance"-->
+            <!--                            android:layout_width="match_parent"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:text="@string/notifications"-->
+            <!--                            android:textAlignment="textStart"-->
+            <!--                            android:textAllCaps="false"-->
+            <!--                            android:textSize="16sp" />-->
 
-<!--                    <ImageView-->
-<!--                        android:layout_width="12dp"-->
-<!--                        android:layout_height="18dp"-->
-<!--                        android:src="@drawable/ic_arrow_right" />-->
-<!--                </LinearLayout>-->
-<!--            </androidx.cardview.widget.CardView>-->
+            <!--                        <TextView-->
+            <!--                            style="@style/DescriptionTextAppearance"-->
+            <!--                            android:layout_width="match_parent"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:text="@string/customize_notifications"-->
+            <!--                            android:textAlignment="textStart"-->
+            <!--                            android:textAllCaps="false"-->
+            <!--                            android:textColor="@color/onPrimaryLight" />-->
+            <!--                    </LinearLayout>-->
+
+            <!--                    <ImageView-->
+            <!--                        android:layout_width="12dp"-->
+            <!--                        android:layout_height="18dp"-->
+            <!--                        android:src="@drawable/ic_arrow_right" />-->
+            <!--                </LinearLayout>-->
+            <!--            </androidx.cardview.widget.CardView>-->
+
+            <!--            <androidx.cardview.widget.CardView-->
+            <!--                android:id="@+id/customizeMoreCardView"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="12dp"-->
+            <!--                app:cardBackgroundColor="@color/white"-->
+            <!--                app:cardCornerRadius="18dp"-->
+            <!--                app:cardElevation="0dp"-->
+            <!--                app:contentPadding="12dp"-->
+            <!--                app:layout_constraintEnd_toStartOf="@+id/guideline17"-->
+            <!--                app:layout_constraintStart_toStartOf="@+id/guideline16"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/customizeNotificationCardView">-->
+
+            <!--                <LinearLayout-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:gravity="center"-->
+            <!--                    android:orientation="horizontal">-->
+
+            <!--                    <ImageView-->
+            <!--                        android:layout_width="46dp"-->
+            <!--                        android:layout_height="46dp"-->
+            <!--                        android:layout_marginEnd="12dp"-->
+            <!--                        android:src="@drawable/ic_more" />-->
+
+            <!--                    <LinearLayout-->
+            <!--                        android:layout_width="0dp"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_weight="1"-->
+            <!--                        android:orientation="vertical">-->
+
+            <!--                        <TextView-->
+            <!--                            style="@style/DescriptionTextAppearance"-->
+            <!--                            android:layout_width="match_parent"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:text="@string/more_customization"-->
+            <!--                            android:textAlignment="textStart"-->
+            <!--                            android:textAllCaps="false"-->
+            <!--                            android:textSize="16sp" />-->
+
+            <!--                        <TextView-->
+            <!--                            style="@style/DescriptionTextAppearance"-->
+            <!--                            android:layout_width="match_parent"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:text="@string/customize_more"-->
+            <!--                            android:textAlignment="textStart"-->
+            <!--                            android:textAllCaps="false"-->
+            <!--                            android:textColor="@color/onPrimaryLight" />-->
+            <!--                    </LinearLayout>-->
+
+            <!--                    <ImageView-->
+            <!--                        android:layout_width="12dp"-->
+            <!--                        android:layout_height="18dp"-->
+            <!--                        android:src="@drawable/ic_arrow_right" />-->
+            <!--                </LinearLayout>-->
+            <!--            </androidx.cardview.widget.CardView>-->
 
             <TextView
                 android:id="@+id/textView8"
                 style="@style/DescriptionTextAppearance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="18dp"
                 android:text="@string/support"
                 app:layout_constraintStart_toStartOf="@+id/guideline16"
-                app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/cardView4" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/contactCardView"

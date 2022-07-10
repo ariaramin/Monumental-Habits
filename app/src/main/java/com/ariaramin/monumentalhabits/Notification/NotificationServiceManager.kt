@@ -30,29 +30,22 @@ class NotificationServiceManager {
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val currentApiVersion = Build.VERSION.SDK_INT
-        if (currentApiVersion < Build.VERSION_CODES.KITKAT) {
-            alarmManager.set(
-                AlarmManager.RTC_WAKEUP,
-                getTime(habit),
-                pendingIntent
-            )
-        } else {
-            if (currentApiVersion < Build.VERSION_CODES.M) {
-                alarmManager.setExact(
-                    AlarmManager.RTC_WAKEUP,
-                    getTime(habit),
-                    pendingIntent
-                )
-            } else {
-                alarmManager.setExactAndAllowWhileIdle(
-                    AlarmManager.RTC_WAKEUP,
-                    getTime(habit),
-                    pendingIntent
-                )
-            }
-        }
-
+//        val currentApiVersion = Build.VERSION.SDK_INT
+//        if (currentApiVersion < Build.VERSION_CODES.KITKAT) {
+//            alarmManager.setRepeating(
+//                AlarmManager.RTC_WAKEUP,
+//                getTime(habit),
+//                AlarmManager.INTERVAL_DAY,
+//                pendingIntent
+//            )
+//        } else {
+        alarmManager.setInexactRepeating(
+            AlarmManager.RTC_WAKEUP,
+            getTime(habit),
+            AlarmManager.INTERVAL_DAY,
+            pendingIntent
+        )
+//        }
     }
 
     private fun getTime(habit: Habit): Long {

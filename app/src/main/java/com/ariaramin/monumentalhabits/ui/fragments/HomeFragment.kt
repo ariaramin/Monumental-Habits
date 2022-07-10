@@ -41,6 +41,7 @@ class HomeFragment : Fragment(), CalendarChangesObserver {
             binding.singleRowCalendar,
             Constants.CALENDAR_TAG,
             null,
+            null,
             this
         )
         observeHabits()

@@ -40,6 +40,7 @@
     <string name="not_completed">This habit hasn\'t completed</string>
     <string name="general_settings">General</string>
     <string name="notifications">Notifications</string>
+    <string name="username">Username</string>
     <string name="customize_notifications">Customize notifications</string>
     <string name="more_customization">More customization</string>
     <string name="customize_more">Customize it more to fit your usage</string>
@@ -51,4 +52,5 @@
     <string name="notification_message">Hey! It\'s time to </string>
     <string name="channel_name">Reminder Notification</string>
     <string name="channel_description">Remind you at the exact time of habits.</string>
+    <string name="today">Today</string>
 </resources>

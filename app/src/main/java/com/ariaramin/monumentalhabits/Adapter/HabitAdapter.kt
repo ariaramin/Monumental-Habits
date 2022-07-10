@@ -48,6 +48,7 @@ class HabitAdapter(
                 binding.contributionCalendar,
                 Constants.CONTRIBUTION_TAG,
                 habit,
+                null,
                 this
             )
             binding.contributionCalendar.suppressLayout(true)

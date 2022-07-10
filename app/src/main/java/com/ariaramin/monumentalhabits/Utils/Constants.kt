@@ -10,6 +10,7 @@ object Constants {
     const val UNSELECTED = "unselected"
     const val CALENDAR_TAG = 0
     const val CONTRIBUTION_TAG = 1
+    const val TRACK_HABITS_TAG = 2
     const val HABIT = "habit"
     const val DATE_FORMAT = "yyyy-MM-dd"
     const val NOTIFICATION_ID = 1001
